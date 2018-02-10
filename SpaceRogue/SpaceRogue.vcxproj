@@ -151,7 +151,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alive.cpp" />
+    <ClCompile Include="enemies\Enemy.cpp" />
+    <ClCompile Include="field\Map.cpp" />
+    <ClCompile Include="items\Item.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="SpaceRogue.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Alive.h" />
+    <ClInclude Include="enemies\Enemy.h" />
+    <ClInclude Include="field\Map.h" />
+    <ClInclude Include="items\Item.h" />
+    <ClInclude Include="Object.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
