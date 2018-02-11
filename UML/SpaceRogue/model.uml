@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_f5KJ0A7wEeiDGtNRbWH2HQ" name="NewModel">
+  <packagedElement xmi:type="uml:Class" xmi:id="_D-uF8A71EeiDGtNRbWH2HQ" name="Object" visibility="public" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_yNUZgA73EeiDGtNRbWH2HQ" name="Item" visibility="public" isAbstract="true">
+    <generalization xmi:id="_C3TDgA74EeiDGtNRbWH2HQ" general="_D-uF8A71EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ELpnUA74EeiDGtNRbWH2HQ" name="Alive" visibility="public" isAbstract="true">
+    <generalization xmi:id="_Ld9-YA74EeiDGtNRbWH2HQ" general="_D-uF8A71EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_paZ4wA7_EeiDGtNRbWH2HQ" name="Components" visibility="public" isAbstract="true">
+    <generalization xmi:id="_nwffMA8AEeiDGtNRbWH2HQ" general="_D-uF8A71EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CZ9toA8AEeiDGtNRbWH2HQ" name="Wall" visibility="public">
+    <generalization xmi:id="_epDZkA8AEeiDGtNRbWH2HQ" general="_paZ4wA7_EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Qcz9UA8AEeiDGtNRbWH2HQ" name="Stairs" visibility="public">
+    <generalization xmi:id="_fJMSMA8AEeiDGtNRbWH2HQ" general="_paZ4wA7_EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RkR7sA8AEeiDGtNRbWH2HQ" name="Door" visibility="public">
+    <generalization xmi:id="_eGyaAA8AEeiDGtNRbWH2HQ" general="_paZ4wA7_EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_SfIaYA8AEeiDGtNRbWH2HQ" name="Trap" visibility="public">
+    <generalization xmi:id="_c96GYA8AEeiDGtNRbWH2HQ" general="_paZ4wA7_EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_3PKMoA8AEeiDGtNRbWH2HQ" name="Equipment" visibility="public" isAbstract="true">
+    <generalization xmi:id="_YES2oA8BEeiDGtNRbWH2HQ" general="_yNUZgA73EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Bo0IEA8BEeiDGtNRbWH2HQ" name="Player" visibility="public">
+    <generalization xmi:id="_C1e6EA8CEeiDGtNRbWH2HQ" general="_ELpnUA74EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_J7xcwA8BEeiDGtNRbWH2HQ" name="Usable" visibility="public" isAbstract="true">
+    <generalization xmi:id="_XzfagA8BEeiDGtNRbWH2HQ" general="_yNUZgA73EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_aqbycA8BEeiDGtNRbWH2HQ" name="Enemy" visibility="public" isAbstract="true">
+    <generalization xmi:id="_DLgNYA8CEeiDGtNRbWH2HQ" general="_ELpnUA74EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nYCtgA8BEeiDGtNRbWH2HQ" name="MedKit" visibility="public">
+    <generalization xmi:id="_piGxUA8BEeiDGtNRbWH2HQ" general="_J7xcwA8BEeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uJt1oA8BEeiDGtNRbWH2HQ" name="Stimulants" visibility="public">
+    <generalization xmi:id="_vimUIA8BEeiDGtNRbWH2HQ" general="_J7xcwA8BEeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1x02gA8BEeiDGtNRbWH2HQ" name="Hammer" visibility="public">
+    <generalization xmi:id="_5W0AMA8BEeiDGtNRbWH2HQ" general="_3PKMoA8AEeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2tZt8A8BEeiDGtNRbWH2HQ" name="LaserSword" visibility="public">
+    <generalization xmi:id="_5DT1YA8BEeiDGtNRbWH2HQ" general="_3PKMoA8AEeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KHiycA8CEeiDGtNRbWH2HQ" name="Drone" visibility="public">
+    <generalization xmi:id="_TZamcA8CEeiDGtNRbWH2HQ" general="_aqbycA8BEeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LCibEA8CEeiDGtNRbWH2HQ" name="Warbot" visibility="public">
+    <generalization xmi:id="_TxlO0A8CEeiDGtNRbWH2HQ" general="_aqbycA8BEeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_bJ2AYA8DEeiDGtNRbWH2HQ" name="Console" visibility="public">
+    <generalization xmi:id="_fJwykA8DEeiDGtNRbWH2HQ" general="_paZ4wA7_EeiDGtNRbWH2HQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_lh3kIA8DEeiDGtNRbWH2HQ" name="Map" visibility="public"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_m5naMA8DEeiDGtNRbWH2HQ" name="GUI" visibility="public"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_vokHUA8DEeiDGtNRbWH2HQ" client="_lh3kIA8DEeiDGtNRbWH2HQ" supplier="_D-uF8A71EeiDGtNRbWH2HQ"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_wSt3kA8DEeiDGtNRbWH2HQ" client="_m5naMA8DEeiDGtNRbWH2HQ" supplier="_lh3kIA8DEeiDGtNRbWH2HQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_zKy38A8DEeiDGtNRbWH2HQ" name="Task" visibility="public" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_apgokA8FEeiDGtNRbWH2HQ" name="Sfml" visibility="public"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cEIMcA8FEeiDGtNRbWH2HQ" name="Qt" visibility="public"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_hxEhIA8FEeiDGtNRbWH2HQ" name="QStackedWidget" visibility="public"/>
+</uml:Model>
