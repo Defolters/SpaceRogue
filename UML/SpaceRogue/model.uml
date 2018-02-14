@@ -63,4 +63,73 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_apgokA8FEeiDGtNRbWH2HQ" name="Sfml" visibility="public"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_cEIMcA8FEeiDGtNRbWH2HQ" name="Qt" visibility="public"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_hxEhIA8FEeiDGtNRbWH2HQ" name="QStackedWidget" visibility="public"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_fUAg0BHOEei4mcuR3YU-bQ" name="Area" visibility="public" isAbstract="true">
+    <generalization xmi:id="_uZmm8BHOEei4mcuR3YU-bQ" general="_nLFx0BHOEei4mcuR3YU-bQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iuj8IBHOEei4mcuR3YU-bQ" name="Spot" visibility="public" isAbstract="true">
+    <generalization xmi:id="_tUHlkBHOEei4mcuR3YU-bQ" general="_nLFx0BHOEei4mcuR3YU-bQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nLFx0BHOEei4mcuR3YU-bQ" name="MoveTarget" visibility="public" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZmXzIBHPEei4mcuR3YU-bQ" name="Action" visibility="public" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_joKoMBHPEei4mcuR3YU-bQ" memberEnd="_joKoMRHPEei4mcuR3YU-bQ _joLPQBHPEei4mcuR3YU-bQ" navigableOwnedEnd="_joLPQBHPEei4mcuR3YU-bQ">
+    <ownedEnd xmi:id="_joKoMRHPEei4mcuR3YU-bQ" name="objects" type="_D-uF8A71EeiDGtNRbWH2HQ" association="_joKoMBHPEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_joKoMhHPEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_joKoMxHPEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_joLPQBHPEei4mcuR3YU-bQ" name="actions" type="_ZmXzIBHPEei4mcuR3YU-bQ" association="_joKoMBHPEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_joLPQRHPEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_joLPQhHPEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_seMNsBHPEei4mcuR3YU-bQ" memberEnd="_seMNsRHPEei4mcuR3YU-bQ _seM0whHPEei4mcuR3YU-bQ" navigableOwnedEnd="_seM0whHPEei4mcuR3YU-bQ">
+    <ownedEnd xmi:id="_seMNsRHPEei4mcuR3YU-bQ" name="actions" type="_ZmXzIBHPEei4mcuR3YU-bQ" association="_seMNsBHPEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_seM0wBHPEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_seM0wRHPEei4mcuR3YU-bQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_seM0whHPEei4mcuR3YU-bQ" name="tasks" type="_zKy38A8DEeiDGtNRbWH2HQ" aggregation="composite" association="_seMNsBHPEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_seM0wxHPEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_seNb0BHPEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_61g4kBHPEei4mcuR3YU-bQ" name="spotsToTasks" memberEnd="_61hfoBHPEei4mcuR3YU-bQ _61iGsRHPEei4mcuR3YU-bQ" navigableOwnedEnd="_61iGsRHPEei4mcuR3YU-bQ">
+    <ownedEnd xmi:id="_61hfoBHPEei4mcuR3YU-bQ" name="spots" type="_iuj8IBHOEei4mcuR3YU-bQ" association="_61g4kBHPEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_61hfoRHPEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_61iGsBHPEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_61iGsRHPEei4mcuR3YU-bQ" name="tasks" type="_zKy38A8DEeiDGtNRbWH2HQ" aggregation="shared" association="_61g4kBHPEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_61iGshHPEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_61itwBHPEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9uge8BHPEei4mcuR3YU-bQ" name="MovePlanner" visibility="public"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_EV9UEBHQEei4mcuR3YU-bQ" memberEnd="_EV9UERHQEei4mcuR3YU-bQ _EV97IRHQEei4mcuR3YU-bQ" navigableOwnedEnd="_EV97IRHQEei4mcuR3YU-bQ">
+    <ownedEnd xmi:id="_EV9UERHQEei4mcuR3YU-bQ" name="movePlanners" type="_9uge8BHPEei4mcuR3YU-bQ" association="_EV9UEBHQEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EV9UEhHQEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EV97IBHQEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_EV97IRHQEei4mcuR3YU-bQ" name="moveTargets" type="_nLFx0BHOEei4mcuR3YU-bQ" association="_EV9UEBHQEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EV97IhHQEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EV97IxHQEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_O7JxIBHQEei4mcuR3YU-bQ" memberEnd="_O7KYMBHQEei4mcuR3YU-bQ _O7K_QBHQEei4mcuR3YU-bQ" navigableOwnedEnd="_O7K_QBHQEei4mcuR3YU-bQ">
+    <ownedEnd xmi:id="_O7KYMBHQEei4mcuR3YU-bQ" name="players" type="_Bo0IEA8BEeiDGtNRbWH2HQ" association="_O7JxIBHQEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O7KYMRHQEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O7KYMhHQEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_O7K_QBHQEei4mcuR3YU-bQ" name="movePlanners" type="_9uge8BHPEei4mcuR3YU-bQ" association="_O7JxIBHQEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O7K_QRHQEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O7K_QhHQEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ZWPP8BHQEei4mcuR3YU-bQ" memberEnd="_ZWPP8RHQEei4mcuR3YU-bQ _ZWP3ABHQEei4mcuR3YU-bQ" navigableOwnedEnd="_ZWP3ABHQEei4mcuR3YU-bQ">
+    <ownedEnd xmi:id="_ZWPP8RHQEei4mcuR3YU-bQ" name="players" type="_Bo0IEA8BEeiDGtNRbWH2HQ" association="_ZWPP8BHQEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZWPP8hHQEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZWPP8xHQEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ZWP3ABHQEei4mcuR3YU-bQ" name="tasks" type="_zKy38A8DEeiDGtNRbWH2HQ" association="_ZWPP8BHQEei4mcuR3YU-bQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZWP3ARHQEei4mcuR3YU-bQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZWP3AhHQEei4mcuR3YU-bQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>
