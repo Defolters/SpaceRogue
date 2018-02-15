@@ -1,2 +1,2 @@
 # SpaceRogue
-Rogue-like
+### Space rogue-like that *plays itself*
