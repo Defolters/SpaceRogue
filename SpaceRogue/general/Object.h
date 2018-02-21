@@ -10,10 +10,11 @@
 class Object
 {
 public:
+    Object();
     //Object(Coordinates position);
     virtual ~Object();
-
-    Coordinates getPosition();
+/*
+    Vector2f getPosition();
     void setPosition(Vector2f coord);
     Vector2f getRotation();
 	Vector2f getSize();
@@ -32,6 +33,9 @@ protected:
 	Vector2f size; //!< размер спрайта
     Vector2f position; //!< положение рыбы в аквариуме
 	Vector2f rotation; //!<	
+    */
+private:
+    //!< type (Component, item, Alive)
 };
 
 #endif //! OBJECT_h

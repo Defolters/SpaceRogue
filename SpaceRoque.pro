@@ -33,7 +33,8 @@ SOURCES += \
     SpaceRogue/general/Manager.cpp \
     SpaceRogue/main/Mainwindow.cpp \
     SpaceRogue/player/Player.cpp \
-    SpaceRogue/player/MovePlanner.cpp
+    SpaceRogue/player/MovePlanner.cpp \
+    SpaceRogue/enemies/Drone.cpp
 
 HEADERS += \
     SpaceRogue/enemies/Enemy.h \
@@ -47,7 +48,8 @@ HEADERS += \
     SpaceRogue/main/Mainwindow.h \
     SpaceRogue/player/Player.h \
     SpaceRogue/player/MovePlanner.h \
-    SpaceRogue/field/Field.h
+    SpaceRogue/field/Field.h \
+    SpaceRogue/enemies/Drone.h
 
 FORMS += \
     SpaceRogue/Mainwindow.ui

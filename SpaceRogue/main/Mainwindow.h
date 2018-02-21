@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "../field/Map.h"
 #include "../general/Manager.h"
-#include "../general
+#include "../player/Player.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,3 +30,12 @@ private:
 };
 
 #endif // MAINWINDOW_H
+
+/*
+sfml and qt
+https://evileg.com/en/post/286/
+https://github.com/SFML/SFML/wiki/tutorial:-compile-and-link-sfml-with-qt-creator
+https://github.com/SFML/SFML/wiki/Tutorial:-Link-SFML-with-Qt-Creator
+https://www.sfml-dev.org/tutorials/1.6/graphics-qt.php
+https://www.youtube.com/watch?v=VWvD4mUpyfU
+*/
