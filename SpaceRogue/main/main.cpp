@@ -1,4 +1,5 @@
-#include "mainwindow.h"
+// SpaceRogue.cpp : Defines the entry point for the console application.
+#include "Mainwindow.h"
 #include <QApplication>
 
 int main()

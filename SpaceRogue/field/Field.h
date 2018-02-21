@@ -1,7 +1,7 @@
 ﻿#ifndef FIELD_H
 #define FIELD_H
 #include <vector>
-#include "Headers.h"
+//#include "Headers.h"
 
 class Object;
 /*!
@@ -35,5 +35,5 @@ public:
 	const RenderWindow* GetWindow();
 	~Field();
 };
-extern Field MAIN_FIELD;
+//extern Field MAIN_FIELD;
 #endif //! FIELD_H

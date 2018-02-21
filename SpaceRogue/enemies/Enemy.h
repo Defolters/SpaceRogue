@@ -1,5 +1,5 @@
 #pragma once
-#include "..\Alive.h"
+#include "../general/Alive.h"
 
 /*! ќбъект враг, который сначала случайно по€вл€етс€ на карте, а затем, если 
     видит главного персонажа, начинает преследовать его.
@@ -8,11 +8,11 @@
     - ¬ыбрасывает предметы после смерти с какой-то веро€тностью
 
 */
-class Enemy abstract
+class Enemy
     : public Alive
 {
 public:
-    Enemy();
+    Enemy() = 0;
     virtual ~Enemy();
 };
 

@@ -2,11 +2,17 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "../field/Map.h"
+#include "../general/Manager.h"
+#include "../general
 
 namespace Ui {
 class MainWindow;
 }
-
+/*! Основа программы:
+ * содержит в себе главные компоненты
+ * запускает всю работу и следит за состоянием, чтобы все это выводить.
+*/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -16,6 +22,10 @@ public:
     ~MainWindow();
 
 private:
+    Map* map;  //!<
+    Manager* manager;  //!<
+    Player* player;  //!<
+
     Ui::MainWindow *ui;
 };
 
