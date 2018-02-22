@@ -6,7 +6,7 @@
         a) главный персонаж
         b) враги
 */
-class Alive abstract
+class Alive
     : public Object
 {
 public:

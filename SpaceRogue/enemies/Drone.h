@@ -1,6 +1,6 @@
 #ifndef DRONE_H
 #define DRONE_H
-
+#include "Enemy.h"
 
 class Drone : public Enemy
 {

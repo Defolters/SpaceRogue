@@ -1,5 +1,6 @@
 ﻿#ifndef OBJECT_h
 #define OBJECT_h
+#include "Headers.h"
 //#include "Field.h"
 //#include "Coordinates.h"
 //#include "Animation.h"
@@ -13,8 +14,8 @@ public:
     Object();
     //Object(Coordinates position);
     virtual ~Object();
-/*
-    Vector2f getPosition();
+
+    Vector2f getPosition();/*
     void setPosition(Vector2f coord);
     Vector2f getRotation();
 	Vector2f getSize();

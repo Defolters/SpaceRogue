@@ -12,7 +12,7 @@ class Enemy
     : public Alive
 {
 public:
-    Enemy() = 0;
+    Enemy();
     virtual ~Enemy();
 };
 

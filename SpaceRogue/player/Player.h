@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
+#include "../general/Alive.h"
+#include "MovePlanner.h"
 /*! Класс player
  *
 */
