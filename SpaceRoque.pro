@@ -31,10 +31,12 @@ SOURCES += \
     SpaceRogue/general/Alive.cpp \
     SpaceRogue/general/Object.cpp \
     SpaceRogue/general/Manager.cpp \
-    SpaceRogue/main/Mainwindow.cpp \
+    SpaceRogue/gui/Mainwindow.cpp \
     SpaceRogue/player/Player.cpp \
     SpaceRogue/player/MovePlanner.cpp \
-    SpaceRogue/enemies/Drone.cpp
+    SpaceRogue/enemies/Drone.cpp \
+    SpaceRogue/gui/QSFMLWidget.cpp \
+    SpaceRogue/gui/SFMLCanvas.cpp
 
 HEADERS += \
     SpaceRogue/enemies/Enemy.h \
@@ -45,21 +47,30 @@ HEADERS += \
     SpaceRogue/general/Headers.h \
     SpaceRogue/general/Object.h \
     SpaceRogue/general/Manager.h \
-    SpaceRogue/main/Mainwindow.h \
+    SpaceRogue/gui/Mainwindow.h \
     SpaceRogue/player/Player.h \
     SpaceRogue/player/MovePlanner.h \
     SpaceRogue/field/Field.h \
-    SpaceRogue/enemies/Drone.h
+    SpaceRogue/enemies/Drone.h \
+    SpaceRogue/gui/QSFMLWidget.h \
+    SpaceRogue/gui/SFMLCanvas.h
 
 FORMS += \
-    SpaceRogue/Mainwindow.ui
+    SpaceRogue/gui/Mainwindow.ui
 
 
 
-LIBS += -LD:/SFML-2.4.1/lib
+#LIBS += -LD:/SFML-2.4.1/lib
 
-CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-main -lsfml-network -lsfml-window -lsfml-system
-CONFIG(debug, debug|release): LIBS += -lsfml-audio-d -lsfml-graphics-d -lsfml-main-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
+#CONFIG(release, debug|release): LIBS += -lsfml-graphics -lsfml-audio -lsfml-network -lsfml-main -lsfml-window -lsfml-system
+#CONFIG(debug, debug|release): LIBS += -lsfml-graphics-d -lsfml-audio-d -lsfml-network-d -lsfml-main-d -lsfml-window-d -lsfml-system-d
 
-INCLUDEPATH += D:/SFML-2.4.1/include
-DEPENDPATH += D:/SFML-2.4.1/include
+#INCLUDEPATH += D:/SFML-2.4.1/include
+#DEPENDPATH += D:/SFML-2.4.1/include
+win32:CONFIG(release, debug|release): LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+else:win32:CONFIG(debug, debug|release): LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio-d -lsfml-graphics-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
+else:unix: LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+
+INCLUDEPATH += D:/SFML-2.4.2/include
+DEPENDPATH += D:/SFML-2.4.2/include
+

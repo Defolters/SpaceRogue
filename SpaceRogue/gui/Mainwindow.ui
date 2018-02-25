@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>517</width>
-    <height>360</height>
+    <width>790</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>0</y>
+      <x>550</x>
+      <y>10</y>
       <width>221</width>
       <height>321</height>
      </rect>
@@ -63,13 +63,23 @@
      </widget>
     </widget>
    </widget>
+   <widget class="SFMLCanvas" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>40</y>
+      <width>451</width>
+      <height>391</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>517</width>
+     <width>790</width>
      <height>20</height>
     </rect>
    </property>
@@ -77,6 +87,14 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SFMLCanvas</class>
+   <extends>QWidget</extends>
+   <header>SpaceRogue/gui/SFMLCanvas.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
