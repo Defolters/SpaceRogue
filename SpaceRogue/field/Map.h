@@ -1,7 +1,10 @@
 #pragma once
 #include <array>
+#include "DungeonGeneration.hpp"
 //! Класс, который содержит карту местности. В папке field так же могут быть служебные классы для генерации карты и проч..
 // Что у нас будет местностью? Космический корабль/станция?
+static const int WIDTH = 50;
+static const int HEIGHT = 50;
 class Map
 {
 public:
@@ -12,7 +15,7 @@ public:
     void setPlayer();
 
 private:
-    std::array<std::array<int, 4>, 3> arr; //!< data structure that contains map (4 width, 3 height)
+    std::array<std::array<int, WIDTH>, HEIGHT> arr; //!< data structure that contains map (4 width, 3 height)
     //!< data with all objects
     //!< data with alive objects
 };

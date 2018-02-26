@@ -53,7 +53,8 @@ HEADERS += \
     SpaceRogue/field/Field.h \
     SpaceRogue/enemies/Drone.h \
     SpaceRogue/gui/QSFMLWidget.h \
-    SpaceRogue/gui/SFMLCanvas.h
+    SpaceRogue/gui/SFMLCanvas.h \
+    SpaceRogue/field/DungeonGeneration.hpp
 
 FORMS += \
     SpaceRogue/gui/Mainwindow.ui
