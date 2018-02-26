@@ -12,15 +12,13 @@
 int main(int argc, char *argv[])
 {
     DunGen::Map mapCreator(30,80);
-    //mapCreator.createLevel(20, 20);
-    //mapCreator.
-    mapCreator.generateLevel(20,3,10);
-    mapCreator.printLevel();
 
     mapCreator.generateLevel(20,3,10);
     mapCreator.printLevel();
-//    std::cin.get();
-//    return 0;
+
+    mapCreator.generateLevel(30,3,7);
+    mapCreator.printLevel();
+
     QApplication a(argc, argv);
     a.setStyle(QStyleFactory::create("Fusion"));
 
