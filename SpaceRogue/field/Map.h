@@ -1,5 +1,5 @@
 #pragma once
-
+#include <array>
 //! Класс, который содержит карту местности. В папке field так же могут быть служебные классы для генерации карты и проч..
 // Что у нас будет местностью? Космический корабль/станция?
 class Map
@@ -12,7 +12,7 @@ public:
     void setPlayer();
 
 private:
-    //!< data structure that contains map
+    std::array<std::array<int, 4>, 3> arr; //!< data structure that contains map (4 width, 3 height)
     //!< data with all objects
     //!< data with alive objects
 };

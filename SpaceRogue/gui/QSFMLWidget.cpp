@@ -30,6 +30,7 @@ void QSFMLWidget::showEvent(QShowEvent *event)
         // Создаём SFML окно для отрисовки с указанием Id окна, в котором будет производиться отрисовка
         sf::RenderWindow::create(reinterpret_cast<sf::WindowHandle>(winId()));
         // error above???
+        setVerticalSyncEnabled(true);
         // Инициализация объектов отрисовки
         onInit();
 
