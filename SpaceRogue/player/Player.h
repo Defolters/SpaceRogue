@@ -2,14 +2,16 @@
 #define PLAYER_H
 #include "../general/Alive.h"
 #include "MovePlanner.h"
-/*! Класс player
- *
-*/
+#include <QString>
+
+/**
+ * @brief The Player class
+ */
 class Player
         : public Alive
 {
 public:
-    Player();
+    Player(QString name);
 private:
     MovePlanner* movePlanner;
 };

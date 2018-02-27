@@ -26,8 +26,12 @@ private:
     sf::Sprite m_sprite;
     // ADDITIONAL FIELDS FOR SPACEROGUE
     sf::Texture floorT;
+    sf::Texture floor1T;
+    sf::Texture floor2T;
     sf::Texture wallT;
     sf::Sprite floorS;
+    sf::Sprite floor1S;
+    sf::Sprite floor2S;
     sf::Sprite wallS;
     Map *map;
     int **level;

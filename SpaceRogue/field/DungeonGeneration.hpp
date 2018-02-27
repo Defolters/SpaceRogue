@@ -153,11 +153,20 @@ public:
 
     void createRoom(Room *room)
     {
+        std::uniform_int_distribution<int> distRoom(0, 10);
+        int chance;
+
         for(int x = room->x1+1; x < room->x2; x++)
         {
             for(int y = room->y1+1; y < room->y2; y++)
             {
-                this->level[x][y] = 0;
+                chance = distRoom(mt);
+                if (chance < 6)
+                    this->level[x][y] = 2; //2,3
+                else if (chance < 8)
+                    this->level[x][y] = 0; //2,3
+                else
+                    this->level[x][y] = 3; //2,3
             }
         }
     }

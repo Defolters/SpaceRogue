@@ -13,23 +13,23 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget->installEventFilter(this);
     ui->plainTextEdit->setReadOnly(true);
 
-    player = new Player();
+
+    player = std::make_shared<Player>("Player One");
     // выбор режима (player играет сам или мы управляем)
 //    player->setMode("itself");
     // выбор уровня персонажа (тупой, обычный, гений)
 //    player->setLevel("fool");
 
     // создаем карту и размещаем на ней start point и х кол-во разных штук (зависит от сложности)
-    map = new Map();
-    ui->widget->setMap(map);
+    map = std::make_shared<Map>(0);
+
+    ui->widget->setMap(map.get());
     // выбор сложности (от этого зависит кол-во врагов, предметов)
-//    map->setDifficulty("difficult");
-    // генерируем карту
-//    map->generateMap();
+//    map->setDifficulty(1);
     // размещаем игрока в start point
-//    map->setPlayer(player);
+    map->setPlayer(player.get());
     // создаем менеджер, который будет управлять игровым процессом
-    manager = new Manager();
+    manager = std::make_shared<Manager>();
 //    manager->setMap(map);
 //    manager->setMainWindow(this);
     // запускаем игру
@@ -85,7 +85,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::on_generateLevel_clicked()
 {
-    ui->widget->setMap(map);
+    map->generateLevel();
+    ui->widget->setMap(map.get());
 }
 
 void MainWindow::addLogMessage(const QString &text)

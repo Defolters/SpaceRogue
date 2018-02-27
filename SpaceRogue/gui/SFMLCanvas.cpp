@@ -45,6 +45,16 @@ void SFMLCanvas::onInit()
         std::cout << "Failed to find texture" << std::endl;
         return;
     }
+    if (!floor1T.loadFromFile("floor1.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
+    if (!floor2T.loadFromFile("floor2.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
     if (!wallT.loadFromFile("wall.png"))
     {
         std::cout << "Failed to find texture" << std::endl;
@@ -54,6 +64,8 @@ void SFMLCanvas::onInit()
     m_sprite.setPosition(sf::Vector2f(50, 50));
     m_sprite.setScale(0.5,0.5);*/
     floorS.setTexture(floorT);
+    floor1S.setTexture(floor1T);
+    floor2S.setTexture(floor2T);
     wallS.setTexture(wallT);
 
 
@@ -71,7 +83,16 @@ void SFMLCanvas::onUpdate()
             sf::Sprite tile = wallS;
             if (level[i][j] == 0)
             {
+
                 tile = floorS;
+            }
+            else if (level[i][j] == 2)
+            {
+                tile = floor1S;
+            }
+            else if (level[i][j] == 3)
+            {
+                tile = floor2S;
             }
             tile.setPosition(i*24,j*24);
             sf::RenderWindow::draw(tile);

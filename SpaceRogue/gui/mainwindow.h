@@ -1,10 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <memory>
 #include <QMainWindow>
 #include "../field/Map.h"
 #include "../general/Manager.h"
 #include "../player/Player.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +22,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
@@ -28,21 +31,14 @@ private slots:
     void on_generateLevel_clicked();
 
 private:
+    //! Method adds message to log tab
     void addLogMessage(const QString &text);
-    Map* map;  //!<
-    Manager* manager;  //!<
-    Player* player;  //!<
+
+    std::shared_ptr<Map> map;  //!< map contains level
+    std::shared_ptr<Manager> manager;  //!< manager
+    std::shared_ptr<Player> player;  //!<
 
     Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H
-
-/*
-sfml and qt
-https://evileg.com/en/post/286/
-https://github.com/SFML/SFML/wiki/tutorial:-compile-and-link-sfml-with-qt-creator
-https://github.com/SFML/SFML/wiki/Tutorial:-Link-SFML-with-Qt-Creator
-https://www.sfml-dev.org/tutorials/1.6/graphics-qt.php
-https://www.youtube.com/watch?v=VWvD4mUpyfU
-*/

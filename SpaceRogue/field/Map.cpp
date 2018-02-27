@@ -2,8 +2,11 @@
 
 
 
-Map::Map() : mapCreator(new DunGen::Map(31,31))
+Map::Map(int difficulty) :
+    mapCreator(new DunGen::Map(MAP_WIDTH,MAP_HEIGHT)),
+    difficulty(difficulty)
 {
+    onInit();
 }
 
 
@@ -11,17 +14,35 @@ Map::~Map()
 {
 }
 
+void Map::setPlayer(Player *player)
+{
+
+}
+
+void Map::generateLevel()
+{
+    level = mapCreator->generateLevel(100,3,10);
+}
+
 int Map::getWidth()
 {
-    return mapCreator->getWidth();
+    return MAP_WIDTH;
 }
 
 int Map::getHeight()
 {
-    return mapCreator->getHeight();
+    return MAP_HEIGHT;
 }
 
 int **Map::getLevel()
 {
-    return mapCreator->generateLevel(100,3,10);
+    return level;
+}
+
+void Map::onInit()
+{
+    generateLevel();
+    //create level
+    // create enemy
+    // create items
 }

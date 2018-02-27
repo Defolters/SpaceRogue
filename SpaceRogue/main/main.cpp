@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
 
     a.setPalette(darkPalette);
     a.setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
+    a.setStyleSheet("QPlainTextEdit{color: #ffff00; selection-background-color: #303030;selection-color: #ffffff;}");
 
     int id = QFontDatabase::addApplicationFont("FAIRFAX.TTF"); //import from debug folder
     QFont font("Fairfax", 14);
