@@ -1,8 +1,9 @@
-#include "Mainwindow.h"
-#include "ui_Mainwindow.h"
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
 #include <QDebug>
 #include <QKeyEvent>
 #include <QEvent>
+#include <QScrollBar>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->widget->installEventFilter(this);
+    ui->plainTextEdit->setReadOnly(true);
 
     player = new Player();
     // выбор режима (player играет сам или мы управляем)
@@ -41,13 +43,37 @@ MainWindow::~MainWindow()
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    //qDebug() << Q_FUNC_INFO;
-
     if (obj == ui->widget) {
             if (event->type() == QEvent::KeyPress) {
                 QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-                qDebug() << "Ate key press" << keyEvent->key();
+
+                qDebug() << "Key pressed: " << keyEvent->key();
+                QString key;
+
+                if (keyEvent->key() == 16777236)
+                {
+                    key = "Right";
+                }
+                else if (keyEvent->key() == 16777234)
+                {
+                    key = "Left";
+                }
+                else if (keyEvent->key() == 16777235)
+                {
+                    key = "Up";
+                }
+                else if (keyEvent->key() == 16777237)
+                {
+                    key = "Down";
+                }
+                else
+                {
+                    key = QString::number(keyEvent->key());
+                }
+
+                addLogMessage(key + " key pressed.");
                 return true;
+
             } else {
                 return false;
             }
@@ -60,4 +86,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 void MainWindow::on_generateLevel_clicked()
 {
     ui->widget->setMap(map);
+}
+
+void MainWindow::addLogMessage(const QString &text)
+{
+    ui->plainTextEdit->appendPlainText(text);
+    ui->plainTextEdit->verticalScrollBar()->setValue(ui->plainTextEdit->verticalScrollBar()->maximum());
+
 }

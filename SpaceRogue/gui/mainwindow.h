@@ -28,6 +28,7 @@ private slots:
     void on_generateLevel_clicked();
 
 private:
+    void addLogMessage(const QString &text);
     Map* map;  //!<
     Manager* manager;  //!<
     Player* player;  //!<

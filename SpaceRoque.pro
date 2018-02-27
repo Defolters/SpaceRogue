@@ -31,12 +31,12 @@ SOURCES += \
     SpaceRogue/general/Alive.cpp \
     SpaceRogue/general/Object.cpp \
     SpaceRogue/general/Manager.cpp \
-    SpaceRogue/gui/Mainwindow.cpp \
     SpaceRogue/player/Player.cpp \
     SpaceRogue/player/MovePlanner.cpp \
     SpaceRogue/enemies/Drone.cpp \
     SpaceRogue/gui/QSFMLWidget.cpp \
-    SpaceRogue/gui/SFMLCanvas.cpp
+    SpaceRogue/gui/SFMLCanvas.cpp \
+    SpaceRogue/gui/MainWindow.cpp
 
 HEADERS += \
     SpaceRogue/enemies/Enemy.h \
@@ -47,17 +47,17 @@ HEADERS += \
     SpaceRogue/general/Headers.h \
     SpaceRogue/general/Object.h \
     SpaceRogue/general/Manager.h \
-    SpaceRogue/gui/Mainwindow.h \
     SpaceRogue/player/Player.h \
     SpaceRogue/player/MovePlanner.h \
     SpaceRogue/field/Field.h \
     SpaceRogue/enemies/Drone.h \
     SpaceRogue/gui/QSFMLWidget.h \
     SpaceRogue/gui/SFMLCanvas.h \
-    SpaceRogue/field/DungeonGeneration.hpp
+    SpaceRogue/field/DungeonGeneration.hpp \
+    SpaceRogue/gui/MainWindow.h
 
 FORMS += \
-    SpaceRogue/gui/Mainwindow.ui
+    SpaceRogue/gui/MainWindow.ui
 
 
 

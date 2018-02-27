@@ -1,24 +1,13 @@
 // SpaceRogue.cpp : Defines the entry point for the console application.
-#include "../gui/Mainwindow.h"
+#include "../gui/MainWindow.h"
+
 #include <QApplication>
-#include <QFrame>
 #include <QStyleFactory>
 #include <QFont>
 #include <QFontDatabase>
-#include <QDebug>
-#include <QDir>
-#include "../field/DungeonGeneration.hpp"
 
 int main(int argc, char *argv[])
 {
-    DunGen::Map mapCreator(30,80);
-
-    mapCreator.generateLevel(20,3,10);
-//    mapCreator.printLevel();
-
-    mapCreator.generateLevel(30,3,7);
-//    mapCreator.printLevel();
-
     QApplication a(argc, argv);
     a.setStyle(QStyleFactory::create("Fusion"));
 
@@ -41,7 +30,6 @@ int main(int argc, char *argv[])
     a.setPalette(darkPalette);
     a.setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
 
-    qDebug() << QDir::currentPath();
     int id = QFontDatabase::addApplicationFont("FAIRFAX.TTF"); //import from debug folder
     QFont font("Fairfax", 14);
     QApplication::setFont(font);
