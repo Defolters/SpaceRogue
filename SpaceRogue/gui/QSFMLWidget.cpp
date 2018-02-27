@@ -1,8 +1,11 @@
 #include "QSFMLWidget.h"
+#include <QDebug>
 
 QSFMLWidget::QSFMLWidget(QWidget *parent) :
     QWidget(parent), m_initialized(false)
 {
+    qDebug() << Q_FUNC_INFO;
+
     // Произведём настройку для непосредственной отрисовки изображения в виджет
     setAttribute(Qt::WA_PaintOnScreen);
     setAttribute(Qt::WA_OpaquePaintEvent);
@@ -14,12 +17,16 @@ QSFMLWidget::QSFMLWidget(QWidget *parent) :
 
 QPaintEngine* QSFMLWidget::paintEngine() const
 {
+//    qDebug() << Q_FUNC_INFO;
+
     // Возвращаем nullptr вместо движка отрисовки Qt, чтобы Qt не пытался что либо рисовать сам
     return nullptr;
 }
 
 void QSFMLWidget::showEvent(QShowEvent *event)
 {
+    qDebug() << Q_FUNC_INFO;
+
     // Первичная инициализация виджета SFML
     if ( m_initialized == false)
     {/*
@@ -45,6 +52,8 @@ void QSFMLWidget::showEvent(QShowEvent *event)
 
 void QSFMLWidget::paintEvent(QPaintEvent *event)
 {
+//    qDebug() << Q_FUNC_INFO;
+
     sf::RenderWindow::clear();
     // Обновление отрисовки объектов
     onUpdate();
@@ -55,10 +64,15 @@ void QSFMLWidget::paintEvent(QPaintEvent *event)
 
 void QSFMLWidget::onInit()
 {
+    qDebug() << Q_FUNC_INFO;
+
     // To be overridden
 }
 
 void QSFMLWidget::onUpdate()
 {
+//    qDebug() << Q_FUNC_INFO;
+
     // To be overridden
+
 }

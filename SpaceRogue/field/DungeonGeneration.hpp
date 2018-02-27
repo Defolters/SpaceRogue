@@ -234,6 +234,10 @@ public:
         return this->level;
     }
 
+    int getWidth() {return width;}
+
+    int getHeight() {return height;}
+
     void printLevel()
     {
         for(int i=0;i<width;i++)

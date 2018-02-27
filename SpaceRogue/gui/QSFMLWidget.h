@@ -18,11 +18,11 @@ class QSFMLWidget : public QWidget, public sf::RenderWindow
 public:
     explicit QSFMLWidget(QWidget* parent = 0);
     // Метод, возвращающий движок отрисовки Qt
-    virtual QPaintEngine* paintEngine() const;
+    virtual QPaintEngine* paintEngine() const override;
     // Метод событий открытия и закрытия виджета, понадобится для первоначальной инициализации
-    virtual void showEvent(QShowEvent *event);
+    virtual void showEvent(QShowEvent *event) override;
     // Метод отрисовки, понадобится нам для перерисовки виджета
-    virtual void paintEvent(QPaintEvent *event);
+    virtual void paintEvent(QPaintEvent *event) override;
 
     // Метод первоначальной инициализации виджета
     virtual void onInit();

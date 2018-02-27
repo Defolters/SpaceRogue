@@ -13,8 +13,11 @@ public:
     void setDifficulty();
     void generateMap();
     void setPlayer();
-
+    int getWidth();
+    int getHeight();
+    int **getLevel();
 private:
+    DunGen::Map *mapCreator;
     std::array<std::array<int, WIDTH>, HEIGHT> arr; //!< data structure that contains map (4 width, 3 height)
     //!< data with all objects
     //!< data with alive objects
