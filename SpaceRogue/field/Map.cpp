@@ -2,7 +2,7 @@
 
 
 
-Map::Map() : mapCreator(new DunGen::Map(30,30))
+Map::Map() : mapCreator(new DunGen::Map(31,31))
 {
 }
 
@@ -23,5 +23,5 @@ int Map::getHeight()
 
 int **Map::getLevel()
 {
-    return mapCreator->generateLevel(5,3,10);
+    return mapCreator->generateLevel(100,3,10);
 }

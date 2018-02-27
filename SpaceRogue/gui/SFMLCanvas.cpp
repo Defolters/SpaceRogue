@@ -40,12 +40,12 @@ void SFMLCanvas::keyPressEvent(QKeyEvent *event)
 void SFMLCanvas::onInit()
 {
     qDebug() << Q_FUNC_INFO;
-    if (!floorT.loadFromFile("TreeAsh.bmp"))
+    if (!floorT.loadFromFile("floor.png"))
     {
         std::cout << "Failed to find texture" << std::endl;
         return;
     }
-    if (!wallT.loadFromFile("Water.bmp"))
+    if (!wallT.loadFromFile("wall.png"))
     {
         std::cout << "Failed to find texture" << std::endl;
         return;
@@ -73,7 +73,7 @@ void SFMLCanvas::onUpdate()
             {
                 tile = floorS;
             }
-            tile.setPosition(i*21,j*21);
+            tile.setPosition(i*24,j*24);
             sf::RenderWindow::draw(tile);
         }
     }
