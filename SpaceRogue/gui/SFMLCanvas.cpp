@@ -60,15 +60,23 @@ void SFMLCanvas::onInit()
         std::cout << "Failed to find texture" << std::endl;
         return;
     }
-    /*m_sprite.setTexture(m_tex);
-    m_sprite.setPosition(sf::Vector2f(50, 50));
-    m_sprite.setScale(0.5,0.5);*/
+    if (!playerT.loadFromFile("player.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
+    if (!startT.loadFromFile("start.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
+
     floorS.setTexture(floorT);
     floor1S.setTexture(floor1T);
     floor2S.setTexture(floor2T);
     wallS.setTexture(wallT);
-
-
+    playerS.setTexture(playerT);
+    startS.setTexture(startT);
 }
 
 void SFMLCanvas::onUpdate()
@@ -98,6 +106,12 @@ void SFMLCanvas::onUpdate()
             sf::RenderWindow::draw(tile);
         }
     }
+
+    startS.setPosition(map->getPlayerStartPosition().x*24, map->getPlayerStartPosition().y*24);
+    sf::RenderWindow::draw(startS);
+
+    playerS.setPosition(map->getPlayer()->getPosition().x*24,map->getPlayer()->getPosition().y*24);
+    sf::RenderWindow::draw(playerS);
     // for set sprites for map
 
 //    m_sprite.setPosition(m_sprite.getPosition().x+5, m_sprite.getPosition().y+5);
@@ -108,5 +122,4 @@ void SFMLCanvas::setMap(Map *map)
 {
     this->map = map;
     level = map->getLevel();
-
 }

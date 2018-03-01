@@ -24,15 +24,19 @@ public:
     ~MainWindow();
 
 protected:
+    //!
     bool eventFilter(QObject *obj, QEvent *event);
 
 
 private slots:
+    //!
     void on_generateLevel_clicked();
-
-private:
     //! Method adds message to log tab
     void addLogMessage(const QString &text);
+    void setLevelNumber(int levelNumber);
+
+private:
+
 
     std::shared_ptr<Map> map;  //!< map contains level
     std::shared_ptr<Manager> manager;  //!< manager

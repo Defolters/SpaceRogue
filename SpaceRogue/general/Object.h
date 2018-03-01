@@ -15,7 +15,9 @@ public:
     //Object(Coordinates position);
     virtual ~Object();
 
-    Vector2f getPosition();/*
+    Vector2f getPosition();
+    void setPosition(Vector2f pos);
+    /*
     void setPosition(Vector2f coord);
     Vector2f getRotation();
 	Vector2f getSize();
@@ -36,6 +38,7 @@ protected:
 	Vector2f rotation; //!<	
     */
 private:
+    sf::Vector2f position;
     //!< type (Component, item, Alive)
 };
 

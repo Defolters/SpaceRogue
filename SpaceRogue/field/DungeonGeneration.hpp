@@ -83,7 +83,8 @@ public:
         }
 
         //
-        std::vector<Room*> rooms; // I should also return this for our tasks
+        //std::vector<Room*> rooms; // I should also return this for our tasks
+        rooms.clear();
         int numRooms = 0;
 
         for(int r = 0; r < this->maxRooms; r++)
@@ -161,7 +162,7 @@ public:
             for(int y = room->y1+1; y < room->y2; y++)
             {
                 chance = distRoom(mt);
-                if (chance < 6)
+                if (chance < 7)
                     this->level[x][y] = 2; //2,3
                 else if (chance < 8)
                     this->level[x][y] = 0; //2,3
@@ -187,6 +188,7 @@ public:
         }
     }
 
+    std::vector<Room*>& getRooms() { return rooms; }
 private:
     int maxRooms;
     int maxRoomSize;
@@ -194,6 +196,7 @@ private:
     int levelWidth;
     int levelHeight;
     int **level;
+    std::vector<Room*> rooms;
     std::random_device rd;
     std::mt19937 mt;
 };
@@ -239,6 +242,7 @@ public:
     int** generateLevel(int maxRooms, int minRoomSize, int maxRoomSize)
     {
         this->level = tunAlg->generateLevel(width, height, maxRooms, minRoomSize, maxRoomSize);
+        this->rooms= tunAlg->getRooms();
 
         return this->level;
     }
@@ -246,6 +250,8 @@ public:
     int getWidth() {return width;}
 
     int getHeight() {return height;}
+
+    std::vector<Room*> & getRooms() { return rooms; }
 
     void printLevel()
     {
@@ -265,9 +271,11 @@ public:
 
 private:
     int **level;
+
     int width;
     int height;
     TunnelingAlg *tunAlg;
+    std::vector<Room*> rooms;
 };
 
 } // namespace DunGen

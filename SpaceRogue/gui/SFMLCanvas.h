@@ -33,6 +33,10 @@ private:
     sf::Sprite floor1S;
     sf::Sprite floor2S;
     sf::Sprite wallS;
+    sf::Texture playerT;
+    sf::Sprite playerS;
+    sf::Texture startT;
+    sf::Sprite startS;
     Map *map;
     int **level;
 

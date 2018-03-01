@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->plainTextEdit->setReadOnly(true);
 
 
+
+
     player = std::make_shared<Player>("Player One");
     // выбор режима (player играет сам или мы управляем)
 //    player->setMode("itself");
@@ -34,6 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
 //    manager->setMainWindow(this);
     // запускаем игру
 //    manager->start(true, 0);
+    connect(map.get(), SIGNAL(newEvent(QString)),
+            this, SLOT(addLogMessage(QString)));
+    connect(map.get(), SIGNAL(nextLevel(int)),
+            this, SLOT(setLevelNumber()));
 }
 
 MainWindow::~MainWindow()
@@ -49,7 +55,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
                 qDebug() << "Key pressed: " << keyEvent->key();
                 QString key;
-
+                map->movePlayer(keyEvent->key());
                 if (keyEvent->key() == 16777236)
                 {
                     key = "Right";
@@ -71,7 +77,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                     key = QString::number(keyEvent->key());
                 }
 
-                addLogMessage(key + " key pressed.");
+                //addLogMessage(key + " key pressed.");
                 return true;
 
             } else {
@@ -93,5 +99,9 @@ void MainWindow::addLogMessage(const QString &text)
 {
     ui->plainTextEdit->appendPlainText(text);
     ui->plainTextEdit->verticalScrollBar()->setValue(ui->plainTextEdit->verticalScrollBar()->maximum());
+}
 
+void MainWindow::setLevelNumber(int levelNumber)
+{
+    ui->level->setText(QString::number(levelNumber));
 }
