@@ -33,7 +33,7 @@ private slots:
     void on_generateLevel_clicked();
     //! Method adds message to log tab
     void addLogMessage(const QString &text);
-    void setLevelNumber(int levelNumber);
+    void newLevel();
 
 private:
 

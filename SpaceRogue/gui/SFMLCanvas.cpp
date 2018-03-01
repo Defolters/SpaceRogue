@@ -70,6 +70,11 @@ void SFMLCanvas::onInit()
         std::cout << "Failed to find texture" << std::endl;
         return;
     }
+    if (!stairsT.loadFromFile("stairs.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
 
     floorS.setTexture(floorT);
     floor1S.setTexture(floor1T);
@@ -77,6 +82,7 @@ void SFMLCanvas::onInit()
     wallS.setTexture(wallT);
     playerS.setTexture(playerT);
     startS.setTexture(startT);
+    stairsS.setTexture(stairsT);
 }
 
 void SFMLCanvas::onUpdate()
@@ -112,10 +118,9 @@ void SFMLCanvas::onUpdate()
 
     playerS.setPosition(map->getPlayer()->getPosition().x*24,map->getPlayer()->getPosition().y*24);
     sf::RenderWindow::draw(playerS);
-    // for set sprites for map
 
-//    m_sprite.setPosition(m_sprite.getPosition().x+5, m_sprite.getPosition().y+5);
-    //    sf::RenderWindow::draw(m_sprite);
+    stairsS.setPosition(map->getStairsPosition().x*24, map->getStairsPosition().y*24);
+    sf::RenderWindow::draw(stairsS);
 }
 
 void SFMLCanvas::setMap(Map *map)

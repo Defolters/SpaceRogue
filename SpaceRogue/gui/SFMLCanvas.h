@@ -37,6 +37,8 @@ private:
     sf::Sprite playerS;
     sf::Texture startT;
     sf::Sprite startS;
+    sf::Texture stairsT;
+    sf::Sprite stairsS;
     Map *map;
     int **level;
 

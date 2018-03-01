@@ -12,5 +12,7 @@ class Alive
 public:
     Alive();
     virtual ~Alive();
+private:
+    int health;
 };
 

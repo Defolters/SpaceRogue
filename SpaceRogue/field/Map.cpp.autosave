@@ -39,6 +39,8 @@ void Map::generateLevel()
     // select random room for init of player
     placePlayer();
     placeStairs();
+    placeEnemies();
+    placeItems();
     // add to player coordinates of generation
     player->setPosition(playerStartPosition);
     // select random rooms and create enemies (depends on difficulty, cannot be in one room with player??)

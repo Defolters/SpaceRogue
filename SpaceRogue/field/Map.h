@@ -45,15 +45,19 @@ public:
 
     void movePlayer(int key);
     Vector2f getPlayerStartPosition();
+    Vector2f getStairsPosition();
+    int getLevelNumber();
 signals:
     //!
     void newEvent(const QString &text);
     //! Signal is emitted when we move to next level
-    void nextLevel(int i);
+    void newLevel();
 
 private:
     //!
     void placePlayer();
+    //!
+    void placeStairs();
     //!
     void placeEnemies();
     //!
@@ -71,6 +75,7 @@ private:
     std::list<std::shared_ptr<Alive>> alive;
     //!
     sf::Vector2f playerStartPosition;
+    sf::Vector2f stairsPosition;
     //!
     int difficulty;
     int levelNumber;

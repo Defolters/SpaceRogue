@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>760</height>
+    <width>1400</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>960</x>
       <y>0</y>
       <width>441</width>
-      <height>760</height>
+      <height>800</height>
      </rect>
     </property>
     <property name="font">
@@ -30,7 +30,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -42,11 +42,11 @@
         <x>10</x>
         <y>0</y>
         <width>441</width>
-        <height>721</height>
+        <height>761</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <property name="geometry">
@@ -54,7 +54,7 @@
          <x>0</x>
          <y>0</y>
          <width>441</width>
-         <height>622</height>
+         <height>662</height>
         </rect>
        </property>
        <property name="whatsThis">
@@ -72,8 +72,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>100</width>
-         <height>30</height>
+         <width>441</width>
+         <height>662</height>
         </rect>
        </property>
        <attribute name="label">
@@ -85,8 +85,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>100</width>
-         <height>30</height>
+         <width>441</width>
+         <height>662</height>
         </rect>
        </property>
        <attribute name="label">
@@ -189,7 +189,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                  \/&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -226,7 +226,7 @@ p, li { white-space: pre-wrap; }
         <x>0</x>
         <y>0</y>
         <width>441</width>
-        <height>721</height>
+        <height>761</height>
        </rect>
       </property>
       <property name="plainText">
@@ -295,13 +295,13 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
-   <widget class="SFMLCanvas" name="widget" native="true">
+   <widget class="SFMLCanvas" name="sfmlWidget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>760</width>
-      <height>760</height>
+      <width>960</width>
+      <height>800</height>
      </rect>
     </property>
    </widget>

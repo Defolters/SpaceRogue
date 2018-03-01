@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow), player(nullptr), map(nullptr), manager(nullptr)
 {
     ui->setupUi(this);
-    ui->widget->installEventFilter(this);
+    ui->sfmlWidget->installEventFilter(this);
     ui->plainTextEdit->setReadOnly(true);
 
 
@@ -25,11 +25,13 @@ MainWindow::MainWindow(QWidget *parent) :
     // создаем карту и размещаем на ней start point и х кол-во разных штук (зависит от сложности)
     map = std::make_shared<Map>(0);
 
-    ui->widget->setMap(map.get());
+
     // выбор сложности (от этого зависит кол-во врагов, предметов)
 //    map->setDifficulty(1);
     // размещаем игрока в start point
     map->setPlayer(player.get());
+    map->generateLevel();
+    ui->sfmlWidget->setMap(map.get());
     // создаем менеджер, который будет управлять игровым процессом
     manager = std::make_shared<Manager>();
 //    manager->setMap(map);
@@ -38,8 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    manager->start(true, 0);
     connect(map.get(), SIGNAL(newEvent(QString)),
             this, SLOT(addLogMessage(QString)));
-    connect(map.get(), SIGNAL(nextLevel(int)),
-            this, SLOT(setLevelNumber()));
+    connect(map.get(), SIGNAL(newLevel()),
+            this, SLOT(newLevel()));
 }
 
 MainWindow::~MainWindow()
@@ -49,7 +51,7 @@ MainWindow::~MainWindow()
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (obj == ui->widget) {
+    if (obj == ui->sfmlWidget) {
             if (event->type() == QEvent::KeyPress) {
                 QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
 
@@ -91,8 +93,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::on_generateLevel_clicked()
 {
-    map->generateLevel();
-    ui->widget->setMap(map.get());
+    newLevel();
 }
 
 void MainWindow::addLogMessage(const QString &text)
@@ -101,7 +102,9 @@ void MainWindow::addLogMessage(const QString &text)
     ui->plainTextEdit->verticalScrollBar()->setValue(ui->plainTextEdit->verticalScrollBar()->maximum());
 }
 
-void MainWindow::setLevelNumber(int levelNumber)
+void MainWindow::newLevel()
 {
-    ui->level->setText(QString::number(levelNumber));
+    map->generateLevel();
+    ui->sfmlWidget->setMap(map.get());
+    ui->level->setText(QString::number(map->getLevelNumber()));
 }
