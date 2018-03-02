@@ -71,8 +71,8 @@
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>88</width>
-          <height>21</height>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -85,6 +85,12 @@
          </item>
          <item>
           <widget class="QLabel" name="health">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>0</string>
            </property>

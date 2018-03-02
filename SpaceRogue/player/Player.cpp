@@ -17,7 +17,7 @@ void Player::addHealth(int value)
 
 void Player::reduceHealth(int value)
 {
-    health -= health;
+    health -= value;
 }
 
 int Player::getHealth()

@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include <memory>
+#include <random>
 #include <list>
 #include <QObject>
 
@@ -64,6 +65,7 @@ private:
     void placeEnemies();
     //!
     void placeItems();
+    //! Method adds a bit of traps in random places in rooms
     void placeTraps();
 
     //!
@@ -80,12 +82,15 @@ private:
     sf::Vector2f playerStartPosition;
     sf::Vector2f stairsPosition;
     //!
-    //!
+    //! Vector of traps
+    std::vector<Vector2f> traps;
     //!
     int turn;
     int difficulty;
     int levelNumber;
     Player* player;
+    std::random_device rd;
+    std::mt19937 mt;
 };
 
 #endif // MAP_H
