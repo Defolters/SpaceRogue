@@ -4,7 +4,7 @@
 
 Map::Map(int difficulty) :
     mapCreator(new DunGen::Map(MAP_WIDTH,MAP_HEIGHT)),
-    difficulty(difficulty), levelNumber(0)
+    difficulty(difficulty), levelNumber(0), turn(0)
 {
 //    generateLevel();
 }
@@ -39,6 +39,9 @@ void Map::generateLevel()
     // select random room for init of player
     placePlayer();
     placeStairs();
+    placeTraps();
+    //placeEnemies();
+    //placeItems();
     // add to player coordinates of generation
     player->setPosition(playerStartPosition);
     // select random rooms and create enemies (depends on difficulty, cannot be in one room with player??)
@@ -65,7 +68,7 @@ int **Map::getLevel()
     return level;
 }
 
-void Map::movePlayer(int key)
+void Map::movePlayer(int key) // move every creature
 {
     QString message;
     if (key == 16777236)
@@ -111,6 +114,16 @@ void Map::movePlayer(int key)
         emit newLevel();
         emit newEvent(QString("Player get to the next level"));
     }
+
+    turn++;
+    emit newTurn(turn);
+    // every seven turn heal us
+    if (turn % 7 == 0)
+    {
+        player->addHealth(1);
+    }
+    // add health
+    // if at trap minus health
 }
 
 Vector2f Map::getPlayerStartPosition()
@@ -136,4 +149,9 @@ void Map::placePlayer()
 void Map::placeStairs()
 {
     stairsPosition = Vector2f(rooms.back()->center()[0], rooms.back()->center()[1]);
+}
+
+void Map::placeTraps()
+{
+    // случайные комнаты, случайные места, поставить ловушки
 }

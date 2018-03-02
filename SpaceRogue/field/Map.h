@@ -13,8 +13,8 @@
 
 //! Класс, который содержит карту местности. В папке field так же могут быть служебные классы для генерации карты и проч..
 // Что у нас будет местностью? Космический корабль/станция?
-static const int MAP_WIDTH = 31;
-static const int MAP_HEIGHT = 31;
+static const int MAP_WIDTH = 40;
+static const int MAP_HEIGHT = 33;
 
 /**
  * @brief The Map class
@@ -52,6 +52,8 @@ signals:
     void newEvent(const QString &text);
     //! Signal is emitted when we move to next level
     void newLevel();
+    //!
+    void newTurn(int turn);
 
 private:
     //!
@@ -62,6 +64,7 @@ private:
     void placeEnemies();
     //!
     void placeItems();
+    void placeTraps();
 
     //!
     DunGen::Map *mapCreator;
@@ -77,6 +80,9 @@ private:
     sf::Vector2f playerStartPosition;
     sf::Vector2f stairsPosition;
     //!
+    //!
+    //!
+    int turn;
     int difficulty;
     int levelNumber;
     Player* player;

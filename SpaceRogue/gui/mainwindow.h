@@ -34,7 +34,7 @@ private slots:
     //! Method adds message to log tab
     void addLogMessage(const QString &text);
     void newLevel();
-
+    void newTurn(int turn);
 private:
 
 

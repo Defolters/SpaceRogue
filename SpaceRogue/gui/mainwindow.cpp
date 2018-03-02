@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(addLogMessage(QString)));
     connect(map.get(), SIGNAL(newLevel()),
             this, SLOT(newLevel()));
+    connect(map.get(), SIGNAL(newTurn(int)),
+            this, SLOT(newTurn(int)));
 }
 
 MainWindow::~MainWindow()
@@ -107,4 +109,10 @@ void MainWindow::newLevel()
     map->generateLevel();
     ui->sfmlWidget->setMap(map.get());
     ui->level->setText(QString::number(map->getLevelNumber()));
+}
+
+void MainWindow::newTurn(int turn)
+{
+    ui->turn->setText(QString::number(turn));
+    ui->health->setText(QString::number(player->getHealth()));
 }
