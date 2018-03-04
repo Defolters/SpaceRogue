@@ -2,7 +2,8 @@
 
 
 
-Enemy::Enemy()
+Enemy::Enemy(const QString &name, int maxHealth, int armor,
+             int strength) : Alive(name, maxHealth, armor, strength)
 {
 }
 

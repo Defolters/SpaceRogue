@@ -163,11 +163,11 @@ public:
             {
                 chance = distRoom(mt);
                 if (chance < 7)
-                    this->level[x][y] = 2; //2,3
+                    this->level[x][y] = 2;
                 else if (chance < 8)
-                    this->level[x][y] = 0; //2,3
+                    this->level[x][y] = 0;
                 else
-                    this->level[x][y] = 3; //2,3
+                    this->level[x][y] = 3;
             }
         }
     }

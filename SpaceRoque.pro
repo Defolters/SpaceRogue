@@ -75,3 +75,7 @@ else:unix: LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-netw
 INCLUDEPATH += D:/SFML-2.4.2/include
 DEPENDPATH += D:/SFML-2.4.2/include
 
+DISTFILES += \
+    README.md \
+    ToDo.md
+

@@ -57,7 +57,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             if (event->type() == QEvent::KeyPress) {
                 QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
 
-                qDebug() << "Key pressed: " << keyEvent->key();
+                //qDebug() << "Key pressed: " << keyEvent->key();
                 QString key;
                 map->movePlayer(keyEvent->key());
                 if (keyEvent->key() == 16777236)

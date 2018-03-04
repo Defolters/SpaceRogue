@@ -21,24 +21,28 @@ public:
     void setMap(Map *map);
 
 private:
-
-    sf::Texture m_tex;
-    sf::Sprite m_sprite;
-    // ADDITIONAL FIELDS FOR SPACEROGUE
     sf::Texture floorT;
     sf::Texture floor1T;
     sf::Texture floor2T;
-    sf::Texture wallT;
+
     sf::Sprite floorS;
     sf::Sprite floor1S;
     sf::Sprite floor2S;
+
+    sf::Texture wallT;
     sf::Sprite wallS;
+
     sf::Texture playerT;
     sf::Sprite playerS;
+
     sf::Texture startT;
     sf::Sprite startS;
+
     sf::Texture stairsT;
     sf::Sprite stairsS;
+
+    sf::Texture enemyT;
+    sf::Sprite enemyS;
     Map *map;
     int **level;
 

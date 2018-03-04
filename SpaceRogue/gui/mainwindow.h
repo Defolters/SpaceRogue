@@ -7,7 +7,6 @@
 #include "../general/Manager.h"
 #include "../player/Player.h"
 
-
 namespace Ui {
 class MainWindow;
 }

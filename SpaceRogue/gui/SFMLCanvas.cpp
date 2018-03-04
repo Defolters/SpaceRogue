@@ -75,7 +75,11 @@ void SFMLCanvas::onInit()
         std::cout << "Failed to find texture" << std::endl;
         return;
     }
-
+    if (!enemyT.loadFromFile("enemy.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
     floorS.setTexture(floorT);
     floor1S.setTexture(floor1T);
     floor2S.setTexture(floor2T);
@@ -83,13 +87,12 @@ void SFMLCanvas::onInit()
     playerS.setTexture(playerT);
     startS.setTexture(startT);
     stairsS.setTexture(stairsT);
+    enemyS.setTexture(enemyT);
 }
 
 void SFMLCanvas::onUpdate()
 {
-//    qDebug() << Q_FUNC_INFO;
-
-    // get map from map
+    // draw level
     for (int i = 0; i < map->getWidth(); i++)
     {
         for (int j = 0; j < map->getHeight(); j++)
@@ -113,14 +116,27 @@ void SFMLCanvas::onUpdate()
         }
     }
 
+    // draw start point
     startS.setPosition(map->getPlayerStartPosition().x*24, map->getPlayerStartPosition().y*24);
     sf::RenderWindow::draw(startS);
 
+    // draw player
     playerS.setPosition(map->getPlayer()->getPosition().x*24,map->getPlayer()->getPosition().y*24);
     sf::RenderWindow::draw(playerS);
 
+    // draw stairs
     stairsS.setPosition(map->getStairsPosition().x*24, map->getStairsPosition().y*24);
     sf::RenderWindow::draw(stairsS);
+
+    // draw enemies
+    for (auto alive : map->getAlive())
+    {
+        if (alive.get() == nullptr)
+            break;
+
+        enemyS.setPosition(alive->getPosition().x*24, alive->getPosition().y*24);
+        sf::RenderWindow::draw(enemyS);
+    }
 }
 
 void SFMLCanvas::setMap(Map *map)

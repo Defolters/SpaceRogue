@@ -8,7 +8,9 @@
 
 #include "DungeonGeneration.hpp"
 #include "../player/Player.h"
-#include "../general/Alive.h"
+#include "../player/MovePlanner.h"
+#include "../enemies/Enemy.h"
+
 
 //#include "../enemies/Enemy.h"
 
@@ -33,21 +35,43 @@ public:
     //! ћожно выбрать из главного меню, тогда карта должна перегенерироватьс€?
     void setDifficulty(int difficulty);
 
+    //! Method sets main player
     // »ли аргумент shared_ptr?
     void setPlayer(Player* player);
-    Player *getPlayer();
+
+    //! Method returns player
+    Player* getPlayer();
+
+    //! Method generates level with MapCreator and then places different objects
     void generateLevel();
 
+    //! Method returns width of the map
     int getWidth();
 
+    //! Method returns height of the map
     int getHeight();
 
+    //! Methods returns list with alive objects
+    std::list<std::shared_ptr<Alive> > &getAlive();
+
+    //! Method returns level
     int** getLevel();
 
-    void movePlayer(int key);
+    //!
+    void movePlayer(int key); // reformat this
+
+    //! Method returns player's spawn position
     Vector2f getPlayerStartPosition();
+
+    //! Method returns position of stairs
     Vector2f getStairsPosition();
+
+    //! Method returns the current number of level
     int getLevelNumber();
+
+    //!
+    bool isSomebodyHere(Vector2f pos);
+
 signals:
     //!
     void newEvent(const QString &text);
@@ -72,14 +96,15 @@ private:
     DunGen::Map *mapCreator;
     //! data structure that contains map (4 width, 3 height)
     int **level;
-    //!
+    //! Vector with rooms placed on level
     std::vector<DunGen::Room*> rooms;
-    //! data with all objects
-    std::list<std::shared_ptr<Object>> objects;
-    //! data with alive objects
+    //! List with all objects
+    //std::list<std::shared_ptr<Object>> objects;
+    //! List with alive objects
     std::list<std::shared_ptr<Alive>> alive;
-    //!
+    //! Position where player is spawned
     sf::Vector2f playerStartPosition;
+    //! Position of stairs to next level
     sf::Vector2f stairsPosition;
     //!
     //! Vector of traps
@@ -89,6 +114,7 @@ private:
     int difficulty;
     int levelNumber;
     Player* player;
+    MovePlanner *movePlanner;
     std::random_device rd;
     std::mt19937 mt;
 };
