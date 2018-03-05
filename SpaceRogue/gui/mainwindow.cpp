@@ -7,7 +7,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow), player(nullptr), map(nullptr), manager(nullptr)
+    ui(new Ui::MainWindow), map(nullptr), manager(nullptr)
 {
     ui->setupUi(this);
     ui->sfmlWidget->installEventFilter(this);
@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    player->setLevel("fool");
 
     // создаем карту и размещаем на ней start point и х кол-во разных штук (зависит от сложности)
-    map = std::make_shared<Map>(0);
+    map = new Map(0);
 
 
     // выбор сложности (от этого зависит кол-во врагов, предметов)
@@ -31,18 +31,18 @@ MainWindow::MainWindow(QWidget *parent) :
     // размещаем игрока в start point
     //map->setPlayer(player.get());
     map->generateLevel();
-    ui->sfmlWidget->setMap(map.get());
+    ui->sfmlWidget->setMap(map);
     // создаем менеджер, который будет управлять игровым процессом
-    manager = std::make_shared<Manager>();
+    manager = new Manager();
 //    manager->setMap(map);
 //    manager->setMainWindow(this);
     // запускаем игру
 //    manager->start(true, 0);
-    connect(map.get(), SIGNAL(newEvent(QString)),
+    connect(map, SIGNAL(newEvent(QString)),
             this, SLOT(addLogMessage(QString)));
-    connect(map.get(), SIGNAL(newLevel()),
+    connect(map, SIGNAL(newLevel()),
             this, SLOT(newLevel()));
-    connect(map.get(), SIGNAL(newTurn(int)),
+    connect(map, SIGNAL(newTurn(int)),
             this, SLOT(newTurn(int)));
 }
 
@@ -107,12 +107,12 @@ void MainWindow::addLogMessage(const QString &text)
 void MainWindow::newLevel()
 {
     map->generateLevel();
-    ui->sfmlWidget->setMap(map.get());
+    ui->sfmlWidget->setMap(map);
     ui->level->setText(QString::number(map->getLevelNumber()));
 }
 
 void MainWindow::newTurn(int turn)
 {
     ui->turn->setText(QString::number(turn));
-    ui->health->setText(QString::number(player->getHealth()));
+    ui->health->setText(QString::number(map->getPlayer()->getHealth()));
 }

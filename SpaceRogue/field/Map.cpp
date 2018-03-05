@@ -57,6 +57,8 @@ void Map::generateLevel()
     // move planner analyze state of Alive creature and do some movement (action)
     difficulty++;
     levelNumber++;
+
+    emit newTurn(turn);
 }
 
 int Map::getWidth()
@@ -152,7 +154,7 @@ void Map::moveCreature(Alive *creature, Vector2f newPosition)
         // stop game and suggest to start again
     }
     turn++;
-    emit newTurn(1);
+    emit newTurn(turn);
     // every seven turn heal us
     if (turn % 7 == 0)
     {
@@ -221,7 +223,7 @@ void Map::placeStairs()
 
 void Map::placeEnemies()
 {
-    alive.cbegin();
+    alive.clear();
     for (int i=1;i<3;i++)
     {
         // create enemy

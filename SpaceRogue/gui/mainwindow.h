@@ -37,9 +37,9 @@ private slots:
 private:
 
 
-    std::shared_ptr<Map> map;  //!< map contains level
-    std::shared_ptr<Manager> manager;  //!< manager
-    std::shared_ptr<Player> player;  //!<
+    Map* map;  //!< map contains level
+    Manager* manager;  //!< manager
+
 
     Ui::MainWindow *ui;
 };
