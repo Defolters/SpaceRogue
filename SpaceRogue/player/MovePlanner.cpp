@@ -5,7 +5,7 @@ MovePlanner::MovePlanner()
 
 }
 
-void MovePlanner::setAlive(std::list<std::shared_ptr<Alive> > &alive)
+void MovePlanner::setAlive(std::list<Alive *> &alive)
 {
     this->alive = alive;
 }

@@ -8,6 +8,7 @@ Map::Map(int difficulty) :
     difficulty(difficulty), levelNumber(0), turn(0), mt(rd())
 {
 //    generateLevel();
+    player = new Player("Player One");
 }
 
 
@@ -22,7 +23,7 @@ void Map::setDifficulty(int difficulty)
 
 void Map::setPlayer(Player *player)
 {
-    //add plyaer to list
+    //add player to list
     this->player = player;
 
 }
@@ -68,7 +69,7 @@ int Map::getHeight()
     return MAP_HEIGHT;
 }
 
-std::list<std::shared_ptr<Alive> > &Map::getAlive()
+std::list<Alive *> &Map::getAlive()
 {
     return alive;
 }
@@ -80,53 +81,52 @@ int **Map::getLevel()
 
 void Map::movePlayer(int key) // move every creature
 {
-    QString message;
+    Vector2f newPosition;
+
     if (key == 16777236)
     {
 //        key = "Right";
-        if (level[(int)player->getPosition().x+1][(int)player->getPosition().y] != 1)
-        {
-            Vector2f pos = Vector2f(player->getPosition().x+1, player->getPosition().y);
-            if (!isSomebodyHere(pos))
-                player->setPosition(pos);
-
-        }else {message="Sorry, you cannot move through walls";}
+        newPosition.x = 1;
+        newPosition.y = 0;
     }
     else if (key == 16777234)
     {
 //        key = "Left";
-        if (level[(int)player->getPosition().x-1][(int)player->getPosition().y] != 1)
-        {
-            Vector2f pos = Vector2f(player->getPosition().x-1, player->getPosition().y);
-            if (!isSomebodyHere(pos))
-                player->setPosition(pos);
-
-        }else {message="Sorry, you cannot move through walls";}
-
+        newPosition.x = -1;
+        newPosition.y = 0;
     }
     else if (key == 16777235)
     {
 //        key = "Up";
-        if (level[(int)player->getPosition().x][(int)player->getPosition().y-1] != 1)
-        {
-            Vector2f pos = Vector2f(player->getPosition().x, player->getPosition().y-1);
-            if (!isSomebodyHere(pos))
-                player->setPosition(pos);
-
-        }else {message="Sorry, you cannot move through walls";}\
+        newPosition.x = 0;
+        newPosition.y = -1;
     }
     else if (key == 16777237)
     {
 //        key = "Down";
-        if (level[(int)player->getPosition().x][(int)player->getPosition().y+1] != 1)
-        {
-            Vector2f pos = Vector2f(player->getPosition().x, player->getPosition().y+1);
-            if (!isSomebodyHere(pos))
-                player->setPosition(pos);
+        newPosition.x = 0;
+        newPosition.y = 1;
+    }
 
-        }else {message="Sorry, you cannot move through walls";}
+    moveCreature(player, newPosition);
+}
+
+void Map::moveCreature(Alive *creature, Vector2f newPosition)
+{
+    bool isMoved = false;
+    QString message;
+    if (level[(int)(player->getPosition().x+newPosition.x)][(int)(player->getPosition().y+newPosition.y)] != 1)
+    {
+        Vector2f pos = Vector2f(player->getPosition().x+newPosition.x, player->getPosition().y+newPosition.y);
+        if (!isSomebodyHere(pos))
+            player->setPosition(pos);
+        isMoved = true;
 
     }
+    else {emit newEvent(QString("Sorry, you cannot move through walls"));}
+
+    if (!isMoved)
+        return;
 
     if (!message.isEmpty())
     {
@@ -152,7 +152,7 @@ void Map::movePlayer(int key) // move every creature
         // stop game and suggest to start again
     }
     turn++;
-    emit newTurn(turn);
+    emit newTurn(1);
     // every seven turn heal us
     if (turn % 7 == 0)
     {
@@ -225,11 +225,11 @@ void Map::placeEnemies()
     for (int i=1;i<3;i++)
     {
         // create enemy
-        std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(QString("Enemy"), 2, 0, 1);
+        Enemy* enemy = new Enemy(QString("Enemy"), 2, 0, 1);
         // set position
         enemy->setPosition(Vector2f(rooms.at(i)->center()[0], rooms.at(i)->center()[1]));
         // put into list
-        alive.push_back(std::static_pointer_cast<Alive>(enemy));
+        alive.push_back(enemy);
     }
 }
 

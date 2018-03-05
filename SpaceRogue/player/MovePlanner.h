@@ -12,11 +12,11 @@ class MovePlanner
 {
 public:
     MovePlanner();
-    void setAlive(std::list<std::shared_ptr<Alive> > &alive);
+    void setAlive(std::list<Alive*> &alive);
     void makeTurn();
 
 private:
-    std::list<std::shared_ptr<Alive> > alive;
+    std::list<Alive*> alive;
 };
 
 #endif // MOVEPLANNER_H

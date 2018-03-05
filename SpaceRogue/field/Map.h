@@ -37,6 +37,7 @@ public:
 
     //! Method sets main player
     // Или аргумент shared_ptr?
+    //void setPlayer(Player* player);
     void setPlayer(Player* player);
 
     //! Method returns player
@@ -52,7 +53,7 @@ public:
     int getHeight();
 
     //! Methods returns list with alive objects
-    std::list<std::shared_ptr<Alive> > &getAlive();
+    std::list<Alive*> &getAlive();
 
     //! Method returns level
     int** getLevel();
@@ -60,6 +61,8 @@ public:
     //!
     void movePlayer(int key); // reformat this
 
+    //!
+    void moveCreature(Alive* creature, Vector2f newPosition);
     //! Method returns player's spawn position
     Vector2f getPlayerStartPosition();
 
@@ -101,7 +104,7 @@ private:
     //! List with all objects
     //std::list<std::shared_ptr<Object>> objects;
     //! List with alive objects
-    std::list<std::shared_ptr<Alive>> alive;
+    std::list<Alive*> alive;
     //! Position where player is spawned
     sf::Vector2f playerStartPosition;
     //! Position of stairs to next level

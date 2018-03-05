@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    player = std::make_shared<Player>("Player One");
+
     // выбор режима (player играет сам или мы управляем)
 //    player->setMode("itself");
     // выбор уровня персонажа (тупой, обычный, гений)
@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // выбор сложности (от этого зависит кол-во врагов, предметов)
 //    map->setDifficulty(1);
     // размещаем игрока в start point
-    map->setPlayer(player.get());
+    //map->setPlayer(player.get());
     map->generateLevel();
     ui->sfmlWidget->setMap(map.get());
     // создаем менеджер, который будет управлять игровым процессом

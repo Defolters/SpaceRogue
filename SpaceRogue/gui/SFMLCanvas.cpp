@@ -131,9 +131,6 @@ void SFMLCanvas::onUpdate()
     // draw enemies
     for (auto alive : map->getAlive())
     {
-        if (alive.get() == nullptr)
-            break;
-
         enemyS.setPosition(alive->getPosition().x*24, alive->getPosition().y*24);
         sf::RenderWindow::draw(enemyS);
     }
