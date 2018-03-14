@@ -24,24 +24,59 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        mainwindow.cpp \
     SpaceRogue/enemies/Enemy.cpp \
     SpaceRogue/field/Map.cpp \
     SpaceRogue/items/Item.cpp \
     SpaceRogue/main/main.cpp \
-    SpaceRogue/main/mainwindow.cpp \
-    SpaceRogue/Alive.cpp \
-    SpaceRogue/Object.cpp \
-    SpaceRogue/SpaceRogue.cpp
+    SpaceRogue/general/Alive.cpp \
+    SpaceRogue/general/Object.cpp \
+    SpaceRogue/general/Manager.cpp \
+    SpaceRogue/player/Player.cpp \
+    SpaceRogue/player/MovePlanner.cpp \
+    SpaceRogue/enemies/Drone.cpp \
+    SpaceRogue/gui/QSFMLWidget.cpp \
+    SpaceRogue/gui/SFMLCanvas.cpp \
+    SpaceRogue/gui/MainWindow.cpp
 
 HEADERS += \
-        mainwindow.h \
     SpaceRogue/enemies/Enemy.h \
     SpaceRogue/field/Map.h \
     SpaceRogue/items/Item.h \
-    SpaceRogue/main/mainwindow.h \
-    SpaceRogue/Alive.h \
-    SpaceRogue/Object.h
+    SpaceRogue/general/Alive.h \
+    SpaceRogue/general/Coordinates.h \
+    SpaceRogue/general/Headers.h \
+    SpaceRogue/general/Object.h \
+    SpaceRogue/general/Manager.h \
+    SpaceRogue/player/Player.h \
+    SpaceRogue/player/MovePlanner.h \
+    SpaceRogue/field/Field.h \
+    SpaceRogue/enemies/Drone.h \
+    SpaceRogue/gui/QSFMLWidget.h \
+    SpaceRogue/gui/SFMLCanvas.h \
+    SpaceRogue/field/DungeonGeneration.hpp \
+    SpaceRogue/gui/MainWindow.h \
+    SpaceRogue/field/FoV.hpp
 
 FORMS += \
-    SpaceRogue/mainwindow.ui
+    SpaceRogue/gui/MainWindow.ui
+
+
+
+#LIBS += -LD:/SFML-2.4.1/lib
+
+#CONFIG(release, debug|release): LIBS += -lsfml-graphics -lsfml-audio -lsfml-network -lsfml-main -lsfml-window -lsfml-system
+#CONFIG(debug, debug|release): LIBS += -lsfml-graphics-d -lsfml-audio-d -lsfml-network-d -lsfml-main-d -lsfml-window-d -lsfml-system-d
+
+#INCLUDEPATH += D:/SFML-2.4.1/include
+#DEPENDPATH += D:/SFML-2.4.1/include
+win32:CONFIG(release, debug|release): LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+else:win32:CONFIG(debug, debug|release): LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio-d -lsfml-graphics-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
+else:unix: LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+
+INCLUDEPATH += D:/SFML-2.4.2/include
+DEPENDPATH += D:/SFML-2.4.2/include
+
+DISTFILES += \
+    README.md \
+    ToDo.md
+
