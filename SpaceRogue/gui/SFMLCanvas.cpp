@@ -93,10 +93,12 @@ void SFMLCanvas::onInit()
 void SFMLCanvas::onUpdate()
 {
     // draw level
+    int **vision = map->getVision();
     for (int i = 0; i < map->getWidth(); i++)
     {
         for (int j = 0; j < map->getHeight(); j++)
         {
+            if ((vision[i][j] != 5) && (vision[i][j] != 6)) {continue;}
             sf::Sprite tile = wallS;
             if (level[i][j] == 0)
             {
@@ -117,22 +119,31 @@ void SFMLCanvas::onUpdate()
     }
 
     // draw start point
-    startS.setPosition(map->getPlayerStartPosition().x*24, map->getPlayerStartPosition().y*24);
-    sf::RenderWindow::draw(startS);
+    if (vision[(int)map->getPlayerStartPosition().x][(int)map->getPlayerStartPosition().y] == 5)
+    {
+        startS.setPosition(map->getPlayerStartPosition().x*24, map->getPlayerStartPosition().y*24);
+        sf::RenderWindow::draw(startS);
+    }
 
     // draw player
     playerS.setPosition(map->getPlayer()->getPosition().x*24,map->getPlayer()->getPosition().y*24);
     sf::RenderWindow::draw(playerS);
 
     // draw stairs
-    stairsS.setPosition(map->getStairsPosition().x*24, map->getStairsPosition().y*24);
-    sf::RenderWindow::draw(stairsS);
+    if (vision[(int)map->getStairsPosition().x][(int)map->getStairsPosition().y] == 5)
+    {
+        stairsS.setPosition(map->getStairsPosition().x*24, map->getStairsPosition().y*24);
+        sf::RenderWindow::draw(stairsS);
+    }
 
     // draw enemies
     for (auto alive : map->getAlive())
     {
-        enemyS.setPosition(alive->getPosition().x*24, alive->getPosition().y*24);
-        sf::RenderWindow::draw(enemyS);
+        if (vision[(int)alive->getPosition().x][(int)alive->getPosition().y] == 5)
+        {
+            enemyS.setPosition(alive->getPosition().x*24, alive->getPosition().y*24);
+            sf::RenderWindow::draw(enemyS);
+        }
     }
 }
 

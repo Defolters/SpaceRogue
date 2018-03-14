@@ -5,7 +5,7 @@
 Map::Map(int difficulty) :
     mapCreator(new DunGen::Map(MAP_WIDTH,MAP_HEIGHT)),
     movePlanner(new MovePlanner()),
-    difficulty(difficulty), levelNumber(0), turn(0), mt(rd())
+    difficulty(difficulty), levelNumber(0), turn(0), mt(rd()), fov(new FOV)
 {
 //    generateLevel();
     player = new Player("Player One");
@@ -37,6 +37,7 @@ void Map::generateLevel()
 {
     //create level
     level = mapCreator->generateLevel(100,3,10);
+
     rooms = mapCreator->getRooms();
     // select random room for init of player
     placePlayer();
@@ -46,6 +47,7 @@ void Map::generateLevel()
     //placeItems();
     // add to player coordinates of generation
     player->setPosition(playerStartPosition);
+    vision = fov->getVision(level, MAP_WIDTH, MAP_HEIGHT, 90, (int)player->getPosition().x, (int)player->getPosition().y);
     movePlanner->setAlive(alive);
     // select random rooms and create enemies (depends on difficulty, cannot be in one room with player??)
 
@@ -79,6 +81,11 @@ std::list<Alive *> &Map::getAlive()
 int **Map::getLevel()
 {
     return level;
+}
+
+int **Map::getVision()
+{
+    return vision;
 }
 
 void Map::movePlayer(int key) // move every creature
@@ -179,6 +186,37 @@ void Map::moveCreature(Alive *creature, Vector2f newPosition)
     }
     // AFTER THIS ALLOW MOVEPLANNER TO MAKE TURN
     movePlanner->makeTurn();
+    //FOV::getVision(level, MAP_WIDTH, MAP_HEIGHT, 10, (int)player->getPosition().x, (int)player->getPosition().y);
+    vision = fov->getVision(level, MAP_WIDTH, MAP_HEIGHT, 10, (int)player->getPosition().x, (int)player->getPosition().y);
+    /*for(int j=0;j<MAP_HEIGHT;j++)
+    {
+        for(int i=0;i<MAP_WIDTH;i++)
+        {
+            if (this->level[i][j] == 1)
+                std::cout << "# ";
+            else if (this->level[i][j] == 5)
+                std::cout << "* ";
+            else{std::cout << ". ";}
+
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << " -----------"<<std::endl;
+    for(int j=0;j<MAP_HEIGHT;j++)
+    {
+        for(int i=0;i<MAP_WIDTH;i++)
+        {
+            if (newMap[i][j] == 1)
+                std::cout << "# ";
+            else if (newMap[i][j] == 5)
+                std::cout << "* ";
+            else{std::cout << ". ";}
+
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;*/
 }
 
 Vector2f Map::getPlayerStartPosition()
@@ -208,6 +246,15 @@ bool Map::isSomebodyHere(Vector2f pos)
         }
     }
     return false;
+}
+
+void Map::makeTurn()
+{
+    for (auto creature : alive)
+    {
+        Vector2f aim = creature->getAim(player->getPosition());
+        moveCreature(creature, aim);
+    }
 }
 
 void Map::placePlayer()

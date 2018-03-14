@@ -16,6 +16,7 @@ public:
     Enemy(const QString &name, int maxHealth, int armor,
           int strength);
     virtual ~Enemy();
+    virtual Vector2f getAim(Vector2f positionOfPlayer) override;
 };
 
 #endif // ENEMY_H

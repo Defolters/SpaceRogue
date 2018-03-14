@@ -7,6 +7,7 @@
 #include <QObject>
 
 #include "DungeonGeneration.hpp"
+#include "FoV.hpp"
 #include "../player/Player.h"
 #include "../player/MovePlanner.h"
 #include "../enemies/Enemy.h"
@@ -57,6 +58,7 @@ public:
 
     //! Method returns level
     int** getLevel();
+    int **getVision();
 
     //!
     void movePlayer(int key); // reformat this
@@ -75,6 +77,8 @@ public:
     //!
     bool isSomebodyHere(Vector2f pos);
 
+    // TEST
+    void makeTurn();
 signals:
     //!
     void newEvent(const QString &text);
@@ -96,9 +100,13 @@ private:
     void placeTraps();
 
     //!
+    //! \brief mapCreator
+    //!
+    FOV* fov;
     DunGen::Map *mapCreator;
     //! data structure that contains map (4 width, 3 height)
     int **level;
+    int **vision;
     //! Vector with rooms placed on level
     std::vector<DunGen::Room*> rooms;
     //! List with all objects
@@ -120,6 +128,7 @@ private:
     MovePlanner *movePlanner;
     std::random_device rd;
     std::mt19937 mt;
+
 };
 
 #endif // MAP_H
