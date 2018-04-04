@@ -1,7 +1,8 @@
 #include <iostream>
 #include "inventory.h"
+#include "weapongenerator.h"
 
-void inventoryTest()
+int inventory_test()
 {
     Armor arm = Armor(15, "plate armor", 10);
     Weapon wep = Weapon(5, "sword", 4);
@@ -45,5 +46,12 @@ void inventoryTest()
         std::cout << "now don't have it" << std::endl;
     }
     std::cout << "equipped armor: " << inventory.getEquippedArmor()->getName() << std::endl;
+
+    //generating 8 level weapon
+    Weapon generated = WeaponGenerator::generateWeapon(8);
+    std::cout << "Generated weapon: " << std::endl;
+    std::cout << generated.getName() << " " << generated.getAttack() << " " << generated.getWeight() << std::endl;
+    
     std::cin.get();
+    return 0;
 }
