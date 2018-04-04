@@ -60,11 +60,15 @@ public:
     int** getLevel();
     int **getVision();
 
-    //!
+    //! Method
     void movePlayer(int key); // reformat this
 
-    //!
+    //! Method move creature to newPosition, if it is possible
     void moveCreature(Alive* creature, Vector2f newPosition);
+
+    //! Method moves enemies
+    void moveEnemies();
+
     //! Method returns player's spawn position
     Vector2f getPlayerStartPosition();
 
@@ -75,7 +79,7 @@ public:
     int getLevelNumber();
 
     //!
-    bool isSomebodyHere(Vector2f pos);
+    bool isSomebodyHere(Vector2f pos, Alive *creature);
 
     // TEST
     void makeTurn();

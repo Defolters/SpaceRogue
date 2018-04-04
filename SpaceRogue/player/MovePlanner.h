@@ -5,6 +5,7 @@
 #include <memory>
 #include "../general/Alive.h"
 #include "../field/DungeonGeneration.hpp"
+#include <QList>
 
 enum class Way {
     UP,
@@ -32,7 +33,7 @@ public:
     void setAlive(std::list<Alive*> &alive);
     void makeTurn();
     
-    bool findWay(Coordinate from, Coordinate to, int** level)
+    QList<Way> findWay(Vector2f from, Vector2f to, int** level, int x, int y);
 private:
     std::list<Way> path = std::list<Way>();
     std::list<Alive*> alive;

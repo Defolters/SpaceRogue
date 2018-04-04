@@ -20,13 +20,16 @@ void MovePlanner::makeTurn()
 
 }
 
-bool MovePlanner::findWay(Coordinate from, Coordinate to, int** level)
+QList<Way> MovePlanner::findWay(Vector2f fromv, Vector2f tov, int** level, int x, int y)
 {
+    QList<Way> path2;
+    Coordinate from(fromv.x, fromv.y);
+    Coordinate to(tov.x, tov.y);
     // failure if starting or ending it the wall
     if (level[from.x][from.y] == 1)
-        return false;
+        return path2;
     if (level[to.x][to.y] == 1)
-        return false;
+        return path2;
 
     // creating a work copy of the map with only two values
     int** plevel = new int*[x];
@@ -64,6 +67,9 @@ bool MovePlanner::findWay(Coordinate from, Coordinate to, int** level)
         d++;
     } while (plevel[to.x][to.y] == std::numeric_limits<int>::min());
     
+
+    //
+
     // reversing path
     int coorX = to.x;
     int coorY = to.y;
@@ -82,23 +88,24 @@ bool MovePlanner::findWay(Coordinate from, Coordinate to, int** level)
                         {
                             // moves are inverted because we start from the end
                             if (dX == 1)
-                                thisTurn = Way::UP;
-                            if (dX == -1)
-                                thisTurn = Way::DOWN;
-                            if (dY == 1)
                                 thisTurn = Way::LEFT;
-                            if (dY == -1)
+                            if (dX == -1)
                                 thisTurn = Way::RIGHT;
+                            if (dY == 1)
+                                thisTurn = Way::UP;
+                            if (dY == -1)
+                                thisTurn = Way::DOWN;
                             goto next;// break through 2 FORs
                         }
                 }
     next:
         // adding move to the PATH list
         path.push_front(thisTurn);
+        path2.push_front(thisTurn);
         coorX+=dX;
         coorY+=dY;
         val--;
     }
     // success
-    return true;
+    return path2;
 }

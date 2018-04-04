@@ -60,6 +60,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                 //qDebug() << "Key pressed: " << keyEvent->key();
                 QString key;
                 map->movePlayer(keyEvent->key());
+                qDebug() << "KEY:" <<keyEvent->key();
                 if (keyEvent->key() == 16777236)
                 {
                     key = "Right";

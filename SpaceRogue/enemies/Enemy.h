@@ -17,6 +17,9 @@ public:
           int strength);
     virtual ~Enemy();
     virtual Vector2f getAim(Vector2f positionOfPlayer) override;
+
+private:
+    Vector2f aim;
 };
 
 #endif // ENEMY_H

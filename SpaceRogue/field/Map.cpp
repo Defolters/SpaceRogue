@@ -103,6 +103,7 @@ void Map::movePlayer(int key) // move every creature
 //        key = "Left";
         newPosition.x = -1;
         newPosition.y = 0;
+        qDebug() << "Left";
     }
     else if (key == 16777235)
     {
@@ -118,17 +119,19 @@ void Map::movePlayer(int key) // move every creature
     }
 
     moveCreature(player, newPosition);
+//    moveEnemies();
+    makeTurn();
 }
 
 void Map::moveCreature(Alive *creature, Vector2f newPosition)
 {
     bool isMoved = false;
     QString message;
-    if (level[(int)(player->getPosition().x+newPosition.x)][(int)(player->getPosition().y+newPosition.y)] != 1)
+    if (level[(int)(creature->getPosition().x+newPosition.x)][(int)(creature->getPosition().y+newPosition.y)] != 1)
     {
-        Vector2f pos = Vector2f(player->getPosition().x+newPosition.x, player->getPosition().y+newPosition.y);
-        if (!isSomebodyHere(pos))
-            player->setPosition(pos);
+        Vector2f pos = Vector2f(creature->getPosition().x+newPosition.x, creature->getPosition().y+newPosition.y);
+        if (!isSomebodyHere(pos, creature))
+            creature->setPosition(pos);
         isMoved = true;
 
     }
@@ -141,6 +144,8 @@ void Map::moveCreature(Alive *creature, Vector2f newPosition)
     {
         emit newEvent(message);
     }
+
+    // player instead of creature, because creatures don't use stairs
     if (player->getPosition() == stairsPosition)
     {
         emit newLevel();
@@ -149,10 +154,10 @@ void Map::moveCreature(Alive *creature, Vector2f newPosition)
 
     for (auto pos : traps)
     {
-        if ((pos.x == player->getPosition().x) && (pos.y == player->getPosition().y))
+        if ((pos.x == creature->getPosition().x) && (pos.y == creature->getPosition().y))
         {
-            player->reduceHealth(2);
-            emit newEvent(QString("Player got in hidden trap"));
+            creature->reduceHealth(2);
+            emit newEvent(QString("%1 got in hidden trap").arg(creature->getName()));
         }
     }
 
@@ -160,12 +165,15 @@ void Map::moveCreature(Alive *creature, Vector2f newPosition)
     {
         // stop game and suggest to start again
     }
-    turn++;
-    emit newTurn(turn);
-    // every seven turn heal us
-    if (turn % 7 == 0)
+    if (creature->getName() == QString("Player One"))
     {
-        player->addHealth(1);
+        turn++;
+        emit newTurn(turn);
+        // every seven turn heal us
+        if (turn % 7 == 0)
+        {
+            player->addHealth(1);
+        }
     }
     // add health
     // if at trap minus health
@@ -185,38 +193,22 @@ void Map::moveCreature(Alive *creature, Vector2f newPosition)
         }
     }
     // AFTER THIS ALLOW MOVEPLANNER TO MAKE TURN
-    movePlanner->makeTurn();
+//    movePlanner->makeTurn();
     //FOV::getVision(level, MAP_WIDTH, MAP_HEIGHT, 10, (int)player->getPosition().x, (int)player->getPosition().y);
-    vision = fov->getVision(level, MAP_WIDTH, MAP_HEIGHT, 10, (int)player->getPosition().x, (int)player->getPosition().y);
-    /*for(int j=0;j<MAP_HEIGHT;j++)
+    if (creature->getName() == QString("Player One"))
     {
-        for(int i=0;i<MAP_WIDTH;i++)
-        {
-            if (this->level[i][j] == 1)
-                std::cout << "# ";
-            else if (this->level[i][j] == 5)
-                std::cout << "* ";
-            else{std::cout << ". ";}
-
-        }
-        std::cout << std::endl;
+        vision = fov->getVision(level, MAP_WIDTH, MAP_HEIGHT, 10,
+                                (int)player->getPosition().x,
+                                (int)player->getPosition().y);
     }
-    std::cout << std::endl;
-    std::cout << " -----------"<<std::endl;
-    for(int j=0;j<MAP_HEIGHT;j++)
-    {
-        for(int i=0;i<MAP_WIDTH;i++)
-        {
-            if (newMap[i][j] == 1)
-                std::cout << "# ";
-            else if (newMap[i][j] == 5)
-                std::cout << "* ";
-            else{std::cout << ". ";}
+}
 
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;*/
+void Map::moveEnemies()
+{
+    // check if enemies see or saw player (aim position updating )
+    // find path
+    // adopt path to coordinates
+    // move enemies to coordinates
 }
 
 Vector2f Map::getPlayerStartPosition()
@@ -234,17 +226,30 @@ int Map::getLevelNumber()
     return levelNumber;
 }
 
-bool Map::isSomebodyHere(Vector2f pos)
+bool Map::isSomebodyHere(Vector2f pos, Alive *creature)
 {
-    for (auto creature : alive)
+    if (creature->getName() == QString("Player One"))
     {
-        if ((creature->getPosition().x == pos.x) && (creature->getPosition().y == pos.y))
+        for (auto creat : alive)
         {
-            creature->reduceHealth(player->getStrength());
-            emit newEvent(QString("You hit " + creature->getName() + " his health: " + QString::number(creature->getHealth())));
+            if ((creat->getPosition().x == pos.x) && (creat->getPosition().y == pos.y))
+            {
+                creat->reduceHealth(player->getStrength());
+                emit newEvent(QString("You hit " + creat->getName() + " his health: " + QString::number(creat->getHealth())));
+                return true;
+            }
+        }
+    }
+    else
+    {
+        if ((player->getPosition().x == pos.x) && (player->getPosition().y == pos.y))
+        {
+            player->reduceHealth(creature->getStrength());
+            emit newEvent(QString("You hit " + player->getName() + " his health: " + QString::number(player->getHealth())));
             return true;
         }
     }
+
     return false;
 }
 
@@ -252,8 +257,65 @@ void Map::makeTurn()
 {
     for (auto creature : alive)
     {
+        // check if enemies see or saw player (aim position updating )
         Vector2f aim = creature->getAim(player->getPosition());
-        moveCreature(creature, aim);
+
+        // find path
+        QList<Way> path;
+        path = movePlanner->findWay(creature->getPosition(), aim, level, MAP_HEIGHT, MAP_WIDTH);
+        for (auto top : path)
+        {
+            if (top == Way::RIGHT)
+            {
+                qDebug() << "Right";
+            }
+            else if (top == Way::LEFT)
+            {
+        qDebug() << "Left";
+            }
+            else if (top == Way::UP)
+            {
+        qDebug() << "Up";
+            }
+            else if (top == Way::DOWN)
+            {
+        qDebug() << "Down";
+            }
+        }
+        // adopt path to coordinates
+        if (path.size() != 0)
+        {
+            Way top = path.at(0);
+            Vector2f newPosition;
+
+            if (top == Way::RIGHT)
+            {
+        //        key = "Right";
+                newPosition.x = 1;
+                newPosition.y = 0;
+            }
+            else if (top == Way::LEFT)
+            {
+        //        key = "Left";
+                newPosition.x = -1;
+                newPosition.y = 0;
+            }
+            else if (top == Way::UP)
+            {
+        //        key = "Up";
+                newPosition.x = 0;
+                newPosition.y = -1;
+            }
+            else if (top == Way::DOWN)
+            {
+        //        key = "Down";
+                newPosition.x = 0;
+                newPosition.y = 1;
+            }
+
+        // move enemies to coordinates
+            moveCreature(creature, newPosition);
+        }
     }
 }
 
@@ -271,7 +333,7 @@ void Map::placeStairs()
 void Map::placeEnemies()
 {
     alive.clear();
-    for (int i=1;i<3;i++)
+    for (int i=1;i<2;i++)
     {
         // create enemy
         Enemy* enemy = new Enemy(QString("Enemy"), 2, 0, 1);
