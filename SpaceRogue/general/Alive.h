@@ -22,10 +22,12 @@ public:
     bool isDead();
     QString getName();
 
-    //! ONLY FOR ENEMIES
-    virtual Vector2f getAim(Vector2f positionOfPlayer) = 0;
+    virtual Vector2f getAim(Vector2f positionOfPlayer) {return aim;}
+
+    virtual void setAim(Vector2f aim);
 
 private:
+    Vector2f aim;
     QString name;
     int health;
     int armor;

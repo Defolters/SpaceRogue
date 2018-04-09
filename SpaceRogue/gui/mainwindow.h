@@ -10,10 +10,10 @@
 namespace Ui {
 class MainWindow;
 }
-/*! Основа программы:
- * содержит в себе главные компоненты
- * запускает всю работу и следит за состоянием, чтобы все это выводить.
-*/
+
+/*!
+ * \brief The MainWindow class
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -34,14 +34,13 @@ private slots:
     void addLogMessage(const QString &text);
     void newLevel();
     void newTurn(int turn);
+    void gameOver();
+
 private:
-
-
     Map* map;  //!< map contains level
     Manager* manager;  //!< manager
-
-
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

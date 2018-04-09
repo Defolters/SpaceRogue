@@ -138,19 +138,6 @@ void draw_map(int map[20][20]) {
 
         return newMap;
     }
-/*
-int call() {
-    LARGE_INTEGER i1, i2, f;
-    QueryPerformanceFrequency(&f);
-    QueryPerformanceCounter(&i1); // start test
-    los(myMap,2,8,6); // <- call los
-    QueryPerformanceCounter(&i2); // end test
-    int iii = 1000000*(i2.QuadPart - i1.QuadPart)/f.QuadPart;
-    printf("Code executed in: %i/%i ms/ns\n", iii/1000, iii);
-    myMap[6][8] = 3; // put player
-    draw_map(myMap); // draw map ;)
-    getch();
-}
-*/
+
 };
 #endif // FOV

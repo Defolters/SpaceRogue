@@ -26,7 +26,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     SpaceRogue/enemies/Enemy.cpp \
     SpaceRogue/field/Map.cpp \
-    SpaceRogue/items/Item.cpp \
     SpaceRogue/main/main.cpp \
     SpaceRogue/general/Alive.cpp \
     SpaceRogue/general/Object.cpp \
@@ -36,12 +35,19 @@ SOURCES += \
     SpaceRogue/enemies/Drone.cpp \
     SpaceRogue/gui/QSFMLWidget.cpp \
     SpaceRogue/gui/SFMLCanvas.cpp \
-    SpaceRogue/gui/MainWindow.cpp
+    SpaceRogue/gui/MainWindow.cpp \
+    SpaceRogue/inventory/armor.cpp \
+    SpaceRogue/inventory/equipment.cpp \
+    SpaceRogue/inventory/inventory.cpp \
+    SpaceRogue/inventory/inventory_test.cpp \
+    SpaceRogue/inventory/item.cpp \
+    SpaceRogue/inventory/useable.cpp \
+    SpaceRogue/inventory/weapon.cpp \
+    SpaceRogue/inventory/weapongenerator.cpp
 
 HEADERS += \
     SpaceRogue/enemies/Enemy.h \
     SpaceRogue/field/Map.h \
-    SpaceRogue/items/Item.h \
     SpaceRogue/general/Alive.h \
     SpaceRogue/general/Coordinates.h \
     SpaceRogue/general/Headers.h \
@@ -55,7 +61,14 @@ HEADERS += \
     SpaceRogue/gui/SFMLCanvas.h \
     SpaceRogue/field/DungeonGeneration.hpp \
     SpaceRogue/gui/MainWindow.h \
-    SpaceRogue/field/FoV.hpp
+    SpaceRogue/field/FoV.hpp \
+    SpaceRogue/inventory/armor.h \
+    SpaceRogue/inventory/equipment.h \
+    SpaceRogue/inventory/inventory.h \
+    SpaceRogue/inventory/item.h \
+    SpaceRogue/inventory/useable.h \
+    SpaceRogue/inventory/weapon.h \
+    SpaceRogue/inventory/weapongenerator.h
 
 FORMS += \
     SpaceRogue/gui/MainWindow.ui

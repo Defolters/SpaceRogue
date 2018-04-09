@@ -51,3 +51,8 @@ QString Alive::getName()
 {
     return name;
 }
+
+void Alive::setAim(Vector2f aim)
+{
+    this->aim = aim;
+}

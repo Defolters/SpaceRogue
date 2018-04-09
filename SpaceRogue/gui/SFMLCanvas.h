@@ -20,6 +20,8 @@ public:
     // ADDITIONAL METHODS FOR SPACEROGUE
     void setMap(Map *map);
 
+    void endOfGame();
+
 private:
     sf::Texture floorT;
     sf::Texture floor1T;
@@ -43,6 +45,13 @@ private:
 
     sf::Texture enemyT;
     sf::Sprite enemyS;
+
+    sf::Texture bloodT;
+    sf::Sprite bloodS;
+
+    sf::Texture gameOverT;
+    sf::Sprite gameOverS;
+    bool gameOver;
     Map *map;
     int **level;
 

@@ -12,7 +12,6 @@ class Player
 {
 public:
     Player(const QString &name);
-    virtual Vector2f getAim(Vector2f positionOfPlayer) override {}
 
 private:
 };

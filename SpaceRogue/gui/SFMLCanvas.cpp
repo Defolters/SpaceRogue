@@ -4,7 +4,7 @@
 #include <QKeyEvent>
 
 SFMLCanvas::SFMLCanvas(QWidget *parent) :
-    QSFMLWidget(parent), map(nullptr)
+    QSFMLWidget(parent), map(nullptr), gameOver(false)
 {
     qDebug() << Q_FUNC_INFO;
 
@@ -80,6 +80,16 @@ void SFMLCanvas::onInit()
         std::cout << "Failed to find texture" << std::endl;
         return;
     }
+    if (!bloodT.loadFromFile("blood.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
+    if (!gameOverT.loadFromFile("gameOver.png"))
+    {
+        std::cout << "Failed to find texture" << std::endl;
+        return;
+    }
     floorS.setTexture(floorT);
     floor1S.setTexture(floor1T);
     floor2S.setTexture(floor2T);
@@ -88,10 +98,21 @@ void SFMLCanvas::onInit()
     startS.setTexture(startT);
     stairsS.setTexture(stairsT);
     enemyS.setTexture(enemyT);
+    bloodS.setTexture(bloodT);
+    gameOverS.setTexture(gameOverT);
 }
 
 void SFMLCanvas::onUpdate()
 {
+    if (gameOver)
+    {
+        sf::RenderWindow::clear();
+        bloodS.setPosition(0,70);
+        sf::RenderWindow::draw(bloodS);
+        gameOverS.setPosition(300,160);
+        sf::RenderWindow::draw(gameOverS);
+        return;
+    }
     // draw level
     int **vision = map->getVision();
     for (int i = 0; i < map->getWidth(); i++)
@@ -151,4 +172,9 @@ void SFMLCanvas::setMap(Map *map)
 {
     this->map = map;
     level = map->getLevel();
+}
+
+void SFMLCanvas::endOfGame()
+{
+    gameOver=true;
 }

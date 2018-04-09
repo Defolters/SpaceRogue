@@ -5,7 +5,7 @@
 Enemy::Enemy(const QString &name, int maxHealth, int armor,
              int strength) : Alive(name, maxHealth, armor, strength)
 {
-    aim = getPosition();
+    Alive::setAim(getPosition());
 }
 
 
@@ -15,10 +15,11 @@ Enemy::~Enemy()
 
 Vector2f Enemy::getAim(Vector2f positionOfPlayer)
 {
-    if (sqrt( pow((getPosition().x-positionOfPlayer.x),2) + pow((getPosition().x-positionOfPlayer.x),2)) < 2)
+    if (sqrt( pow((getPosition().x-positionOfPlayer.x),2) + pow((getPosition().y-positionOfPlayer.y),2)) < 4.5)
     {
-        aim = positionOfPlayer;
+        Alive::setAim(positionOfPlayer);
 
-    }// if player in distance, move
-    return positionOfPlayer;
+    }
+
+    return Alive::getAim(positionOfPlayer);
 }

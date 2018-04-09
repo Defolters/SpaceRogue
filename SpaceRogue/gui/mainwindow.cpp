@@ -13,10 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->sfmlWidget->installEventFilter(this);
     ui->plainTextEdit->setReadOnly(true);
 
-
-
-
-
     // выбор режима (player играет сам или мы управляем)
 //    player->setMode("itself");
     // выбор уровня персонажа (тупой, обычный, гений)
@@ -33,17 +29,50 @@ MainWindow::MainWindow(QWidget *parent) :
     map->generateLevel();
     ui->sfmlWidget->setMap(map);
     // создаем менеджер, который будет управлять игровым процессом
-    manager = new Manager();
+    /*
+    цель игрока - добраться до выхода на следующий уровень
+    если выход в поле видимости, то движемся к нему
+    по пути можно забрать предмет
+    по пути можно избегать/убивать врагов
+
+    игрок двигается по видимым комантам (виден путь, соединяющий их)
+    то есть он направляется в комнаты, мимо которых проходил.
+    в комнаты, мимо которых он не ходил, идти не может
+
+    ближайшая комната: комната, путь к которой наименьший (функция поиска пути, размер меньше)
+    установить цель
+    двигаться, пока цель не достигнута? (избегать врагов и подбирать предметы по пути?)
+
+    лист пройденных комнат
+    лист комнат, которые видел, лист комнат, которые рядом
+    идем в комнаты, сортированные по дальности (идем в ближайшую),
+    в которыееще не ходили
+
+    manager->start(true, 0);
+    запускает медленную итерацию, в которой персонаж делает ОДНО действие
+    надевает/использует/бьет/идет
+
+
+    */
+    //map->start(true, 1);
+//    manager = new Manager();
 //    manager->setMap(map);
 //    manager->setMainWindow(this);
     // запускаем игру
 //    manager->start(true, 0);
+//    connect(map, SIGNAL(updateWindow()),
+//            this, SLOT(repaint()));
     connect(map, SIGNAL(newEvent(QString)),
             this, SLOT(addLogMessage(QString)));
     connect(map, SIGNAL(newLevel()),
             this, SLOT(newLevel()));
     connect(map, SIGNAL(newTurn(int)),
             this, SLOT(newTurn(int)));
+    connect(map, SIGNAL(gameOver()),
+            this, SLOT(gameOver()));
+
+    map->moveToThread(map);
+    map->start();
 }
 
 MainWindow::~MainWindow()
@@ -59,8 +88,13 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
                 //qDebug() << "Key pressed: " << keyEvent->key();
                 QString key;
-                map->movePlayer(keyEvent->key());
-                qDebug() << "KEY:" <<keyEvent->key();
+
+                //map->movePlayer(keyEvent->key());
+//                map->start(true, 1);
+                //map->makeTurn();
+//                ui->sfmlWidget->onUpdate();
+                ui->health->setText(QString::number(map->getPlayer()->getHealth()));
+
                 if (keyEvent->key() == 16777236)
                 {
                     key = "Right";
@@ -116,4 +150,9 @@ void MainWindow::newTurn(int turn)
 {
     ui->turn->setText(QString::number(turn));
     ui->health->setText(QString::number(map->getPlayer()->getHealth()));
+}
+
+void MainWindow::gameOver()
+{
+    ui->sfmlWidget->endOfGame();
 }

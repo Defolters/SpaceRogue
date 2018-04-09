@@ -5,6 +5,8 @@
 #include <random>
 #include <list>
 #include <QObject>
+#include <QThread>
+#include <QList>
 
 #include "DungeonGeneration.hpp"
 #include "FoV.hpp"
@@ -24,7 +26,7 @@ static const int MAP_HEIGHT = 33;
  * @brief The Map class
  * Size of level is constant
  */
-class Map : public QObject
+class Map : public QThread
 {
     Q_OBJECT
 
@@ -32,13 +34,14 @@ public:
     Map(int difficulty);
     ~Map();
 
+    //!
+    virtual void run() override;
+
     //! Выбор сложности. Влияет на количество мностров и предметов.
     //! Можно выбрать из главного меню, тогда карта должна перегенерироваться?
     void setDifficulty(int difficulty);
 
     //! Method sets main player
-    // Или аргумент shared_ptr?
-    //void setPlayer(Player* player);
     void setPlayer(Player* player);
 
     //! Method returns player
@@ -57,11 +60,19 @@ public:
     std::list<Alive*> &getAlive();
 
     //! Method returns level
-    int** getLevel();
+    int **getLevel();
     int **getVision();
+    DunGen::Room *getNearestRoom(QList<DunGen::Room *> rooms, Vector2f pos);
+    int getDistance(Vector2f first, Vector2f second);
 
-    //! Method
+    //! Method if player controlled ouside program
     void movePlayer(int key); // reformat this
+
+    //! Method moves player to his aim
+    void movePlayer();
+
+    //! Method analyse map and set aim to player
+    void findPlayerAim();
 
     //! Method move creature to newPosition, if it is possible
     void moveCreature(Alive* creature, Vector2f newPosition);
@@ -78,11 +89,15 @@ public:
     //! Method returns the current number of level
     int getLevelNumber();
 
-    //!
-    bool isSomebodyHere(Vector2f pos, Alive *creature);
+    //! Method checks if player moves toward enemy
+    bool isSomebodyHere(Vector2f pos);
 
-    // TEST
+    //! Method checks if player near enemy
+    bool isPlayerNear(Alive *creature);
+
+    //! Method moves enemies and player
     void makeTurn();
+
 signals:
     //!
     void newEvent(const QString &text);
@@ -90,6 +105,10 @@ signals:
     void newLevel();
     //!
     void newTurn(int turn);
+    //!
+    void gameOver();
+    //!
+    void updateWindow();
 
 private:
     //!
@@ -103,9 +122,6 @@ private:
     //! Method adds a bit of traps in random places in rooms
     void placeTraps();
 
-    //!
-    //! \brief mapCreator
-    //!
     FOV* fov;
     DunGen::Map *mapCreator;
     //! data structure that contains map (4 width, 3 height)
@@ -113,6 +129,10 @@ private:
     int **vision;
     //! Vector with rooms placed on level
     std::vector<DunGen::Room*> rooms;
+    //!
+    QList<DunGen::Room*> visited;
+    QList<DunGen::Room*> unvisited;
+    DunGen::Room* playerAim;
     //! List with all objects
     //std::list<std::shared_ptr<Object>> objects;
     //! List with alive objects
@@ -121,7 +141,6 @@ private:
     sf::Vector2f playerStartPosition;
     //! Position of stairs to next level
     sf::Vector2f stairsPosition;
-    //!
     //! Vector of traps
     std::vector<Vector2f> traps;
     //!
@@ -132,7 +151,6 @@ private:
     MovePlanner *movePlanner;
     std::random_device rd;
     std::mt19937 mt;
-
 };
 
 #endif // MAP_H

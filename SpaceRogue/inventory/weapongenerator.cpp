@@ -8,8 +8,8 @@
 #include "../libs/json.hpp"
 using json = nlohmann::json;
 
-const char* WEAPONS_NOUNS_PATH = "resources/weapon_nouns.json";
-const char* WEAPONS_ADJECTIVES_PATH = "resources/weapon_adjectives.json";
+const char* WEAPONS_NOUNS_PATH = "weapon_nouns.json";
+const char* WEAPONS_ADJECTIVES_PATH = "weapon_adjectives.json";
 std::ifstream noun_stream(WEAPONS_NOUNS_PATH);
 json WEAPONS_NOUNS = json::parse(noun_stream);
 std::ifstream adj_stream = std::ifstream(WEAPONS_ADJECTIVES_PATH);
