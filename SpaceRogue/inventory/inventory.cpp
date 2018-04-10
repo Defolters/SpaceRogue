@@ -9,6 +9,11 @@ Inventory::Inventory()
 
 }
 
+int Inventory::itemCount() const
+{
+    return items.size();
+}
+
 std::list<Item*>& Inventory::getItems()
 {
     return items;
@@ -16,6 +21,7 @@ std::list<Item*>& Inventory::getItems()
 
 Item* Inventory::getItem(std::string name)
 {
+    emit redrawInventory();
     std::list<Item*>::iterator item = items.begin();
     while (item != items.end())
     {
@@ -40,6 +46,7 @@ bool Inventory::drop(std::string name)
     if (*toDrop == equippedWeapon)
         equippedWeapon = &fists;
     items.erase(toDrop);
+    delete *toDrop;
     //delete or place on a map?
     return true;
 }

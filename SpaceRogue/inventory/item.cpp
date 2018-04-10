@@ -1,5 +1,7 @@
 #include "item.h"
 
+std::array<std::string, 4> TYPENAMES = {"weapon", "armor", "useable", "thing"};
+
 Item::Item(int weight_, std::string name_, ItemType type_)
 {
     weight = weight_;

@@ -1,14 +1,17 @@
 #ifndef ITEM_H_
 #define ITEM_H_
 #include <string>
+#include <array>
+
 enum class ItemType
 {
-    WEAPON,
+    WEAPON = 0,
     ARMOR,
     USEABLE,
     THING
 };
 
+extern std::array<std::string, 4> TYPENAMES;
 class Item
 {
 private:

@@ -1,7 +1,7 @@
 #include "Map.h"
 #include <QDebug>
 #include <chrono>
-
+#include "../inventory/weapongenerator.h"
 
 Map::Map(int difficulty) :
     mapCreator(new DunGen::Map(MAP_WIDTH,MAP_HEIGHT)),
@@ -9,6 +9,7 @@ Map::Map(int difficulty) :
     difficulty(difficulty), levelNumber(0), turn(0), mt(rd()), fov(new FOV)
 {
     player = new Player("Player One");
+    qDebug() << "Ready Player One"; // you know I had to do it to 'em
 }
 
 
@@ -326,6 +327,10 @@ void Map::moveCreature(Alive *creature, Vector2f newPosition)
     {
         if((*iter)->isDead())
         {
+            //TODO dynamic levels
+            Weapon* reward = WeaponGenerator::generateWeapon(3);
+            player->getInventory()->takeItem(reward);
+            emit newEvent(QString("Player took: " + QString::fromStdString(reward->getName())));
             //delete
             alive.erase(iter++);
         }

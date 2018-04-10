@@ -4,7 +4,7 @@
 #include <QKeyEvent>
 #include <QEvent>
 #include <QScrollBar>
-
+#include <QTableWidgetItem>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), map(nullptr), manager(nullptr)
@@ -70,7 +70,8 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(newTurn(int)));
     connect(map, SIGNAL(gameOver()),
             this, SLOT(gameOver()));
-
+    connect(map->getPlayer()->getInventory(), SIGNAL(redrawInventory()),
+            this, SLOT(redrawInventory()));
     map->moveToThread(map);
     map->start();
 }
@@ -128,6 +129,57 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     }
 }
 
+void MainWindow::redrawInventory()
+{
+    Inventory* inv = map->getPlayer()->getInventory();
+    auto invWidget = ui->inventoryWidget;
+    int itemCount = inv->itemCount();
+    qDebug() << "items: " << itemCount;
+    if (invWidget->rowCount() < itemCount)
+    {
+        for (int i = invWidget->rowCount(); i<itemCount; i++)
+        {
+            invWidget->insertRow(i);
+        }
+    }
+    if (invWidget->rowCount() > itemCount)
+    {
+        for (int i = invWidget->rowCount(); i>itemCount; i--)
+        {
+            invWidget->removeRow(i);
+        }
+    }
+    invWidget->clearContents();
+    auto items = inv->getItems();
+    auto item = items.begin();
+    for (int i = 0; i < itemCount; i++)
+    {
+        invWidget->setItem(i,0,new QTableWidgetItem(QString::fromStdString(TYPENAMES[(int)(*item)->getType()])));
+        invWidget->setItem(i,1,new QTableWidgetItem(QString::fromStdString((*item)->getName())));
+        if ((*item)->getType() == ItemType::THING)
+        {
+            invWidget->setItem(i,2,new QTableWidgetItem("none"));
+        }
+        else
+        {
+            int efficency = 0;
+            switch ((*item)->getType())
+            {
+                case ItemType::ARMOR:
+                    efficency = ((Armor*)(*item))->getProtection();
+                break;
+                case ItemType::WEAPON:
+                    efficency = ((Weapon*)(*item))->getAttack();
+                break;
+                    //TODO useable
+            }
+            invWidget->setItem(i,2,new QTableWidgetItem(QString::number(efficency)));
+        }
+        invWidget->setItem(i,3,new QTableWidgetItem(QString::number((*item)->getWeight())));
+        item++;
+    }
+}
+
 void MainWindow::on_generateLevel_clicked()
 {
     newLevel();
@@ -144,6 +196,7 @@ void MainWindow::newLevel()
     map->generateLevel();
     ui->sfmlWidget->setMap(map);
     ui->level->setText(QString::number(map->getLevelNumber()));
+    redrawInventory();
 }
 
 void MainWindow::newTurn(int turn)

@@ -16,7 +16,7 @@ public:
     virtual ~Alive();
 
     void addHealth(int value);
-    void reduceHealth(int value);
+    virtual void reduceHealth(int value);
     int getHealth();
     int getStrength();
     bool isDead();
@@ -26,7 +26,7 @@ public:
 
     virtual void setAim(Vector2f aim);
 
-private:
+protected:
     Vector2f aim;
     QString name;
     int health;

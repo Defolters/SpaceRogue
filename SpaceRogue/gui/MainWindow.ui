@@ -54,7 +54,7 @@
          <x>0</x>
          <y>0</y>
          <width>441</width>
-         <height>662</height>
+         <height>650</height>
         </rect>
        </property>
        <property name="whatsThis">
@@ -143,21 +143,52 @@
          <x>0</x>
          <y>0</y>
          <width>441</width>
-         <height>662</height>
+         <height>650</height>
         </rect>
        </property>
        <attribute name="label">
         <string>Inventory</string>
        </attribute>
-       <widget class="QTableView" name="tableView">
+       <widget class="QTableWidget" name="inventoryWidget">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>256</width>
-          <height>192</height>
+          <x>0</x>
+          <y>10</y>
+          <width>421</width>
+          <height>611</height>
          </rect>
         </property>
+        <property name="columnCount">
+         <number>4</number>
+        </property>
+        <column>
+         <property name="text">
+          <string>Type</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>8</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Efficency</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Weight</string>
+         </property>
+        </column>
        </widget>
       </widget>
       <widget class="QWidget" name="statisticsPage">
@@ -166,7 +197,7 @@
          <x>0</x>
          <y>0</y>
          <width>441</width>
-         <height>662</height>
+         <height>650</height>
         </rect>
        </property>
        <attribute name="label">
@@ -275,7 +306,7 @@ p, li { white-space: pre-wrap; }
         <x>10</x>
         <y>470</y>
         <width>141</width>
-        <height>21</height>
+        <height>25</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">

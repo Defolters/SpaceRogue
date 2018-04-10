@@ -17,7 +17,7 @@ json WEAPONS_ADJECTIVES = json::parse(adj_stream);
 std::vector<std::string> general_names = WEAPONS_NOUNS["general"];
 std::vector<std::string> general_adjs = WEAPONS_ADJECTIVES["general"];
 
-Weapon WeaponGenerator::generateWeapon(int level)
+Weapon* WeaponGenerator::generateWeapon(int level)
 {
     std::srand(unsigned(std::time(0)));
     int weight = std::rand() % MAX_WEAPON_WEIGHT + 1;
@@ -26,5 +26,5 @@ Weapon WeaponGenerator::generateWeapon(int level)
         attack = 1;
     int name_num = std::rand() % general_names.size();
     int adj_num = std::rand() % general_adjs.size();
-    return Weapon(weight, general_adjs[adj_num] + " " + general_names[name_num], attack);
+    return new Weapon(weight, general_adjs[adj_num] + " " + general_names[name_num], attack);
 }
