@@ -15,7 +15,7 @@ class Inventory : public QObject
     Q_OBJECT
 
 public:
-    Inventory();
+    explicit Inventory(QObject *parent = nullptr);
 
     std::list<Item *> &getItems();
     Item* getItem(std::string name);

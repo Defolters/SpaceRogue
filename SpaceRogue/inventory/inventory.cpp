@@ -4,14 +4,16 @@
 Weapon fists = Weapon(0, "fists", 1);
 Armor shirt = Armor(0, "shirt", 0);
 
-Inventory::Inventory()
-{
 
-}
 
 int Inventory::itemCount() const
 {
     return items.size();
+}
+
+Inventory::Inventory(QObject *parent)
+{
+
 }
 
 std::list<Item*>& Inventory::getItems()
@@ -21,7 +23,7 @@ std::list<Item*>& Inventory::getItems()
 
 Item* Inventory::getItem(std::string name)
 {
-    emit redrawInventory();
+
     std::list<Item*>::iterator item = items.begin();
     while (item != items.end())
     {
@@ -53,6 +55,7 @@ bool Inventory::drop(std::string name)
 
 void Inventory::takeItem(Item* item_)
 {
+    emit redrawInventory();
     items.push_back(item_);
 }
 
