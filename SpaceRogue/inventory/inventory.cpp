@@ -4,14 +4,16 @@
 Weapon fists = Weapon(0, "fists", 1);
 Armor shirt = Armor(0, "shirt", 0);
 
-Inventory::Inventory()
-{
 
-}
 
 int Inventory::itemCount() const
 {
     return items.size();
+}
+
+Inventory::Inventory(QObject *parent)
+{
+
 }
 
 std::list<Item*>& Inventory::getItems()

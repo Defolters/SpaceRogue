@@ -39,10 +39,11 @@ SOURCES += \
     SpaceRogue/inventory/armor.cpp \
     SpaceRogue/inventory/equipment.cpp \
     SpaceRogue/inventory/inventory.cpp \
+    SpaceRogue/inventory/inventory_test.cpp \
     SpaceRogue/inventory/item.cpp \
     SpaceRogue/inventory/useable.cpp \
     SpaceRogue/inventory/weapon.cpp \
-    SpaceRogue/inventory/weapongenerator.cpp
+    SpaceRogue/inventory/weapongenerator.cpp \
 
 HEADERS += \
     SpaceRogue/enemies/Enemy.h \
@@ -67,8 +68,7 @@ HEADERS += \
     SpaceRogue/inventory/item.h \
     SpaceRogue/inventory/useable.h \
     SpaceRogue/inventory/weapon.h \
-    SpaceRogue/inventory/weapongenerator.h \
-    SpaceRogue/libs/json.hpp
+    SpaceRogue/inventory/weapongenerator.h
 
 FORMS += \
     SpaceRogue/gui/MainWindow.ui
@@ -82,12 +82,12 @@ FORMS += \
 
 #INCLUDEPATH += D:/SFML-2.4.1/include
 #DEPENDPATH += D:/SFML-2.4.1/include
-win32:CONFIG(release, debug|release): LIBS += -LC:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
-else:win32:CONFIG(debug, debug|release): LIBS += -LC:/SFML-2.4.2/lib/ -lsfml-audio-d -lsfml-graphics-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
-else:unix: LIBS += -LC:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+win32:CONFIG(release, debug|release): LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+else:win32:CONFIG(debug, debug|release): LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio-d -lsfml-graphics-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
+else:unix: LIBS += -LD:/SFML-2.4.2/lib/ -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
 
-INCLUDEPATH += C:/SFML-2.4.2/include
-DEPENDPATH += C:/SFML-2.4.2/include
+INCLUDEPATH += D:/SFML-2.4.2/include
+DEPENDPATH += D:/SFML-2.4.2/include
 
 DISTFILES += \
     README.md \
