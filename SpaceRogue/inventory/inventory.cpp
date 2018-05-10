@@ -21,7 +21,6 @@ std::list<Item*>& Inventory::getItems()
 
 Item* Inventory::getItem(std::string name)
 {
-    emit redrawInventory();
     std::list<Item*>::iterator item = items.begin();
     while (item != items.end())
     {
@@ -53,6 +52,7 @@ bool Inventory::drop(std::string name)
 
 void Inventory::takeItem(Item* item_)
 {
+    emit redrawInventory();
     items.push_back(item_);
 }
 
